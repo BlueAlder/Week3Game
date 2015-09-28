@@ -103,7 +103,8 @@ Player.prototype.Update = function(deltaTime) {
 	}
 	
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
-		document.write("hello");
+		CurrentLevel = level1_blue;
+		initialize(level1_blue);
 	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
