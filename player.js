@@ -1,5 +1,5 @@
 var METER  = TILE;
-var GRAVITY = METER * 9.8 * 0.3;
+var GRAVITY = METER * 9.8 * 3;
 var MAXDX = METER * 10;
 var MAXDY = METER * 15;
 var ACCEL = MAXDX * 2;
@@ -7,14 +7,21 @@ var JUMP = METER * 1500;
 var FRICTION = MAXDX * 6;
 
 
+
+
 var LEFT = 0;
 var RIGHT = 1;
 
 
+
+
+
 var Player = function(){
+	
 	this.image = document.createElement("img");
 	this.image.src = "hero.png";
-	
+
+
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
 	this.width = 159;
@@ -37,19 +44,22 @@ var Player = function(){
 
 	this.score = 0;
 
-
+	
 
 	this.direction = LEFT;
-	
-	
-	
-
 
 	
 
 };
 
+
+
 Player.prototype.Update = function(deltaTime) {
+
+	
+
+	GRAVITY = METER * 9.8 * 3;
+
 	var tx = pixel2Tile(this.x);
 	var ty = pixel2Tile(this.y);
 
@@ -64,18 +74,16 @@ Player.prototype.Update = function(deltaTime) {
 
 	var left, right, jump;
 	left = right = jump = false;
-	
-	
+
+
+	//changing anmiation and direction for left
 	if(keyboard.isKeyDown(keyboard.KEY_LEFT)){
 		left = true;
 		this.direction = LEFT;
 		
 	}
 
-	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
-		jump = true;
-		this.score += 1;
-	}
+
 
 	//changing anmiation and direction for right
 	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT)){
@@ -83,7 +91,17 @@ Player.prototype.Update = function(deltaTime) {
 		this.direction = RIGHT;
 		
 	}
+
 	
+
+	
+	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
+		jump = true;
+		this.score += 1;
+	}
+
+	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
+
 	var wasleft = this.velocityX < 0;
 	var wasright = this.velocityX > 0;
 	
@@ -110,11 +128,6 @@ Player.prototype.Update = function(deltaTime) {
 		this.jumping = true;
 		
 	}
-	
-	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0))){
-		//clamp at zero to prevbent frition from making us jiggle side to side
-		this.velocityX = 0;
-	} 
 
 	
 	
@@ -125,7 +138,40 @@ Player.prototype.Update = function(deltaTime) {
 	this.y += deltaTime * this.velocityY;
 	this.velocityX = bound(this.velocityX + (deltaTime * ddx), -MAXDX, MAXDX);
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
+
+
+	if (this.y > SCREEN_HEIGHT){
+			this.lives --;
+			if (this.lives <= 0){
+				curGameState = GAMESTATE_ENDGAME;
+
+			}
+
+			else{
+				this.respawn();
+			}
+
+		}
 	
+
+
+
+	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0))){
+		//clamp at zero to prevbent frition from making us jiggle side to side
+		this.velocityX = 0;
+	} 
+
+	//rotation when walking
+	//if ( this.velocityX > 0){
+	//	this.rotation = (this.velocityX / MAXDX) * (Math.PI / 8) ;
+	//}
+	//else if (this.velocityX < 0){
+	//	this.rotation = (-this.velocityX / MAXDX) * (-Math.PI /8);
+	//}
+	//else{
+	//	this.rotation = 0;
+	//}
+
 	//CEILING
 	if(this.velocityY > 0){
 		if ((cellDown & !cell) || (cellDiag && !cellRight && nx)){
@@ -166,17 +212,46 @@ Player.prototype.Update = function(deltaTime) {
 		}
 	}
 
+Player.prototype.respawn = function(){
+	this.x = SCREEN_WIDTH/2;
+	this.y = SCREEN_HEIGHT/2;
+	this.width = 159;
+	this.height = 163;
+
+	this.offset_x = -55;
+	this.offset_y = -87;
+
+	this.velocityX =  0;
+	this.velocityY = 0;
+	this.angularVelocity = 0;
+	this.rotation = 0;
+
+	this.shooting = false;
+	this.ammo = 7;
+}
+
+
 };
 
-Player.prototype.Draw = function(){
+Player.prototype.Draw = function(_cam_x, _cam_y){
+	
+
 	context.save();
 
-		context.translate(this.x, this.y);
+		context.translate(this.x + _cam_x, this.y + _cam_y);
 		context.rotate(this.rotation);
 		context.drawImage(this.image, 
 							-this.width/2,
 							-this.height/2)
 
 	context.restore();
+
+	context.save();
+
+	context.beginPath();
+	context.rect(this.x  , this.y, 70, 70);
+	context.stroke();
+	context.restore();
+
 };
 

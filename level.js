@@ -53,8 +53,8 @@ var level = { "height":15,
 }
 
 var LAYER_COUNT = level.layers.length;
-var LAYER_DOORS = 1;
 var LAYER_GROUND = 0;   
+var LAYER_DOORS = 1;
 
 
 
@@ -77,6 +77,10 @@ tileset.src = level.tilesets[0].image;
 
 var cells = [];                 //array that holds our simplified collision data
 function initialize(){
+
+
+
+
 
     for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++){      //initialise the collision map
         cells[layerIdx] = [];
