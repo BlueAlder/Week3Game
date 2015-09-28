@@ -31,7 +31,49 @@ function getDeltaTime()
 	return deltaTime;
 }
 
+var SCREEN_WIDTH = canvas.width;
+var SCREEN_HEIGHT = canvas.height;
 
+
+var keyboard = new Keyboard();
+var mainPlayer = new Player();
+
+// some variables to calculate the Frames Per Second (FPS - this tells use
+// how fast our game is running, and allows us to make the game run at a 
+// constant speed)
+var fps = 0;
+var fpsCount = 0;
+var fpsTime = 0;
+
+function run(){
+	context.fillStyle = "#ccc";		
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	var deltaTime = getDeltaTime();
+
+	//drawMap();
+
+	mainPlayer.Update(deltaTime);
+	mainPlayer.Draw();
+	
+	//context.drawImage(chuckNorris, SCREEN_WIDTH/2 - chuckNorris.width/2, SCREEN_HEIGHT/2 - chuckNorris.height/2);
+	
+		
+	// update the frame counter 
+	fpsTime += deltaTime;
+	fpsCount++;
+	if(fpsTime >= 1)
+	{
+		fpsTime -= 1;
+		fps = fpsCount;
+		fpsCount = 0;
+	}		
+		
+	// draw the FPS
+	context.fillStyle = "#f00";
+	context.font="14px Arial";
+	context.fillText("FPS: " + fps, 5, 20, 100);
+}
 
 
 // This code will set up the framework so that the 'run' function is called 60 times per second.
