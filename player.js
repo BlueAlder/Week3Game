@@ -19,13 +19,13 @@ var RIGHT = 1;
 var Player = function(){
 	
 	this.image = document.createElement("img");
-	this.image.src = "hero.png";
+	this.image.src = "player_front.png";
 
 
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
-	this.width = 159;
-	this.height = 163;
+	this.width = 66;
+	this.height = 92;
 
 	this.velocityX =  0;
 	this.velocityY = 0;
@@ -70,6 +70,8 @@ Player.prototype.Update = function(deltaTime) {
 	var cellRight =	 cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty);
 	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
 	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
+	
+	var cellDoor = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
 
 
 	var left, right, jump;
@@ -98,6 +100,10 @@ Player.prototype.Update = function(deltaTime) {
 	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
 		jump = true;
 		this.score += 1;
+	}
+	
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
+		document.write("hello");
 	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
@@ -249,7 +255,7 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 	context.save();
 
 	context.beginPath();
-	context.rect(this.x  , this.y, 70, 70);
+	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
 	context.stroke();
 	context.restore();
 

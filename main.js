@@ -45,6 +45,8 @@ var GAMESTATE_GAME = 1;
 var GAMESTATE_ENDGAME = 2;
 var curGameState = GAMESTATE_SPLASH;
 
+
+
 //function updateCanvasSize() {
 //	SCREEN_WIDTH = window.innerWidth;
 //	SCREEN_HEIGHT = window.innerHeight;
@@ -192,7 +194,7 @@ var chuck = new Player();
 
 
 
-initialize();
+initialize(level1_green);
 
 
 
