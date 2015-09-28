@@ -38,6 +38,7 @@ var Cam_x = 0;
 var Cam_y = 0;
 var Cam_ratio = 0.05;
 
+initialize();
 
 var keyboard = new Keyboard();
 var mainPlayer = new Player();
@@ -83,12 +84,14 @@ function run(){
 	Cam_x = lerp(Cam_x, new_pos_x, Cam_ratio );
 	Cam_y = lerp(Cam_y, new_pos_y, Cam_ratio );
 
-
+	
+	mainPlayer.Update(deltaTime);
+	mainPlayer.Draw();
+	
 	drawMap(Cam_x, Cam_y);
 	
 
-	mainPlayer.Update(deltaTime);
-	mainPlayer.Draw();
+	
 	
 	//context.drawImage(chuckNorris, SCREEN_WIDTH/2 - chuckNorris.width/2, SCREEN_HEIGHT/2 - chuckNorris.height/2);
 	

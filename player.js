@@ -56,10 +56,10 @@ Player.prototype.Update = function(deltaTime) {
 	var nx = this.x % TILE;
 	var ny = this.y % TILE;
 
-	var cell = 		 cellAtTileCoord(LAYER_PLATFORMS, tx, 		ty);
-	var cellRight =	 cellAtTileCoord(LAYER_PLATFORMS, tx + 1, 	ty);
-	var cellDown  =	 cellAtTileCoord(LAYER_PLATFORMS, tx, 		ty + 1);
-	var cellDiag  =  cellAtTileCoord(LAYER_PLATFORMS, tx + 1, 	ty + 1);
+	var cell = 		 cellAtTileCoord(LAYER_GROUND, tx, 		ty);
+	var cellRight =	 cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty);
+	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
+	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
 
 
 	var left, right, jump;
