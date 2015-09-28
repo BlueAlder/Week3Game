@@ -72,7 +72,10 @@ Player.prototype.Update = function(deltaTime) {
 		
 	}
 
-
+	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
+		jump = true;
+		this.score += 1;
+	}
 
 	//changing anmiation and direction for right
 	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT)){
@@ -81,6 +84,87 @@ Player.prototype.Update = function(deltaTime) {
 		
 	}
 	
+	var wasleft = this.velocityX < 0;
+	var wasright = this.velocityX > 0;
+	
+	var falling = this.falling;
+	var ddx = 0;			 //ACCELERATION
+	var ddy = GRAVITY;
+
+	if (left){
+		ddx -= ACCEL;
+	}
+	else if (wasleft){
+		ddx += FRICTION;
+	}
+
+	if (right){
+		ddx += ACCEL;
+	}
+	else if (wasright){
+		ddx -= FRICTION
+	}
+
+	if (jump && !this.jumping && !falling){
+		ddy -= JUMP;
+		this.jumping = true;
+		
+	}
+	
+	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0))){
+		//clamp at zero to prevbent frition from making us jiggle side to side
+		this.velocityX = 0;
+	} 
+
+	
+	
+
+
+	//calculate the new postioin and velocity:
+	this.x += deltaTime * this.velocityX;
+	this.y += deltaTime * this.velocityY;
+	this.velocityX = bound(this.velocityX + (deltaTime * ddx), -MAXDX, MAXDX);
+	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
+	
+	//CEILING
+	if(this.velocityY > 0){
+		if ((cellDown & !cell) || (cellDiag && !cellRight && nx)){
+			this.y = tile2Pixel(ty);
+			this.velocityY = 0;
+			this.falling = false;
+			this.jumping = false;
+			ny = 0;
+		}
+
+	}
+	//FLOOR
+	else if (this.velocityY < 0) {
+		if ((cell && !cellDown) || (cellRight && !cellDiag && nx)){
+			//calmp the y poition to avoid jumping into platform above
+
+			this.y = tile2Pixel(ty + 1);
+			this.velocityY = 0; 		//stop upward velocity
+
+			cell = cellDown;
+			cellRight = cellDiag;
+			ny = 0;
+		}
+	}
+
+	if (this.velocityX > 0){
+		if ((cellRight && !cell) || (cellDiag && !cellDown && ny)){
+			//clamp the x position to avoid moving into the platform we just hit
+			this.x = tile2Pixel(tx);
+			this.velocityX = 0;
+		}
+	}
+
+	else if (this.velocityX < 0){
+		if((cell && !cellRight) || (cellDown && !cellDiag && ny)){
+			this.x = tile2Pixel(tx + 1);
+			this.velocityX = 0;
+		}
+	}
 
 };
 
