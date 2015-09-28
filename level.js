@@ -53,8 +53,9 @@ var level = { "height":15,
 }
 
 var LAYER_COUNT = level.layers.length;
-var LAYER_GROUND = 0;   
-var LAYER_PLATFORMS = 1;
+var LAYER_DOORS = 0;
+var LAYER_GROUND = 1;   
+
 
 
 
@@ -69,6 +70,8 @@ var TILESET_SPACING = level.tilesets[0].spacing;
 
 var tileset = document.createElement("img");
 tileset.src = level.tilesets[0].image;
+
+
 
 
 
