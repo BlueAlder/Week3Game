@@ -34,6 +34,10 @@ function getDeltaTime()
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
+var Cam_x = 0;
+var Cam_y = 0;
+var Cam_ratio = 0.05;
+
 
 var keyboard = new Keyboard();
 var mainPlayer = new Player();
@@ -50,8 +54,38 @@ function run(){
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	
 	var deltaTime = getDeltaTime();
+	
+	var left_stop = 0 ;
+	var top_stop = 0 ;
+	var right_stop = TILE * MAP.tw - SCREEN_WIDTH;
+	var bottom_stop = TILE * MAP.th - SCREEN_HEIGHT;
+	
+	var new_pos_x = mainPlayer.x - SCREEN_WIDTH/2;
+	var new_pos_y = mainPlayer.y - SCREEN_HEIGHT/2;
 
-	//drawMap();
+	if (new_pos_x < left_stop){
+		new_pos_x = left_stop;
+	}
+
+	else if (new_pos_x > right_stop){
+		new_pos_x = right_stop;
+	}
+
+	if (new_pos_y < top_stop){
+		new_pos_y = top_stop;
+	}
+
+	else if (new_pos_y > bottom_stop){
+		new_pos_y = bottom_stop;
+	}
+
+	 
+	Cam_x = lerp(Cam_x, new_pos_x, Cam_ratio );
+	Cam_y = lerp(Cam_y, new_pos_y, Cam_ratio );
+
+
+	drawMap(Cam_x, Cam_y);
+	
 
 	mainPlayer.Update(deltaTime);
 	mainPlayer.Draw();
@@ -75,6 +109,10 @@ function run(){
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
 
+
+function lerp(left_value, right_value, ratio){
+	return left_value + ratio * ( right_value - left_value);
+};
 
 // This code will set up the framework so that the 'run' function is called 60 times per second.
 // We have a some options to fall back on in case the browser doesn't support our preferred method.
