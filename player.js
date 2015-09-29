@@ -105,18 +105,25 @@ Player.prototype.Update = function(deltaTime) {
 	if(keyboard.isKeyDown(keyboard.KEY_LEFT)){
 		left = true;
 		this.direction = LEFT;
-		if(this.sprite.currentAnimation != ANIM_WALK_LEFT)
-			this.sprite.setAnimation(ANIM_WALK_LEFT);
+		
+		if (this.falling == false && this.jumping == false)
+		{
+			if(this.sprite.currentAnimation != ANIM_WALK_LEFT)
+				this.sprite.setAnimation(ANIM_WALK_LEFT);
+		}
 	}
-
 
 
 	//changing anmiation and direction for right
 	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT)){
 		right = true;
 		this.direction = RIGHT;
+		
+		if (this.falling == false && this.jumping == false)
+		{
 		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
 			this.sprite.setAnimation(ANIM_WALK_RIGHT);
+		}
 	}
 
 	//reset to idle animation
