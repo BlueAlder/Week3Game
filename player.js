@@ -1,9 +1,9 @@
 var METER  = TILE;
-var GRAVITY = METER * 9.8 * 3;
+var GRAVITY = METER * 9.8 * 2.5;
 var MAXDX = METER * 10;
 var MAXDY = METER * 15;
 var ACCEL = MAXDX * 2;
-var JUMP = METER * 1500;
+var JUMP = METER * 1800;
 var FRICTION = MAXDX * 6;
 
 
@@ -79,7 +79,7 @@ Player.prototype.Update = function(deltaTime) {
 	
 	this.sprite.update(deltaTime);
 	
-	GRAVITY = METER * 9.8 * 3;
+	GRAVITY = METER * 8 * 3;
 
 	var tx = pixel2Tile(this.x);
 	var ty = pixel2Tile(this.y);
