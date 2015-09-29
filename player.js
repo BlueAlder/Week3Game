@@ -37,8 +37,8 @@ var Player = function(){
 		this.sprite.setAnimationOffset(i, -55, -87);
 	}
 	
-	this.x = SCREEN_WIDTH/3;
-	this.y = SCREEN_HEIGHT/1.2;
+	this.x = SCREEN_WIDTH/1.5;
+	this.y = SCREEN_HEIGHT/1.3;
 	this.width = 72.5;
 	this.height = 95;
 
