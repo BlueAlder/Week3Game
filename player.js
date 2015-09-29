@@ -115,9 +115,13 @@ Player.prototype.Update = function(deltaTime) {
 		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
 			this.sprite.setAnimation(ANIM_WALK_RIGHT);
 	}
-
-	
-
+	else {
+		if(this.jumping == false && this.fallig == false)
+		{
+			if(this.sprite.currentAnimation != ANIM_IDLE)
+			this.sprite.setAnimation(ANIM_IDLE);
+		}
+	}
 	
 	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
 		jump = true;
