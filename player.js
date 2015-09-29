@@ -37,7 +37,7 @@ var Player = function(){
 		this.sprite.setAnimationOffset(i, -55, -87);
 	}
 	
-	this.x = SCREEN_WIDTH/1.5;
+	this.x = SCREEN_WIDTH/1.7;
 	this.y = SCREEN_HEIGHT/1.3;
 	this.width = 72.5;
 	this.height = 95;
@@ -291,8 +291,8 @@ Player.prototype.Update = function(deltaTime) {
 	}
 
 Player.prototype.respawn = function(){
-	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/2;
+	this.x = SCREEN_WIDTH/1.7;
+	this.y = SCREEN_HEIGHT/1.3;
 	this.width = 73.5;
 	this.height = 95;
 
