@@ -313,7 +313,7 @@ Player.prototype.respawn = function(){
 
 Player.prototype.Draw = function(_cam_x, _cam_y){
 	
-	this.sprite.draw(context, this.x + (this.width/2), this.y + (this.height/2));
+	this.sprite.draw(context, this.x + (this.width/2) - _cam_x, this.y + (this.height/2) - _cam_y);
 //	context.save();
 //
 //		context.translate(this.x + _cam_x, this.y + _cam_y);
