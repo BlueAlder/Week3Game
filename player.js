@@ -139,6 +139,7 @@ Player.prototype.Update = function(deltaTime) {
 
 	//check for a reality swap
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
+	
 		if (CurrentLevel == level1_green){
 			CurrentLevel = level1_blue;
 			initialize(CurrentLevel);
@@ -147,6 +148,7 @@ Player.prototype.Update = function(deltaTime) {
 			CurrentLevel = level1_green;
 			initialize(CurrentLevel);
 		}
+		
 
 		this.swapAllowed = false;
 	}
@@ -157,7 +159,9 @@ Player.prototype.Update = function(deltaTime) {
 		if (this.swapBuffer <= 0){
 			this.swapBuffer = SWAP_BUFFER;
 			this.swapAllowed = true;
+			
 		}
+		
 	}
 
 
@@ -166,6 +170,13 @@ Player.prototype.Update = function(deltaTime) {
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		this.hasKey = true;
 	}
+
+
+	//player has key and is at the door
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
+		curGameState = GAMESTATE_ENDGAME
+	}
+
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
 
