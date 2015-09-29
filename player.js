@@ -12,16 +12,31 @@ var FRICTION = MAXDX * 6;
 var LEFT = 0;
 var RIGHT = 1;
 
-
+var ANIM_IDLE = 0;
+var ANIM_JUMP = 1;
+var ANIM_WALK_LEFT = 2;
+var ANIM_WALK_RIGHT = 3;
+var ANIM_MAX = 4;
 
 
 
 var Player = function(){
 	
-	this.image = document.createElement("img");
-	this.image.src = "player_front.png";
-
-
+	this.sprite = new Sprite("p1_spritesheet.png");
+	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
+		[4]);
+	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+		[13, 13]);
+	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+		[0, 1, 2, 7, 9, 10, 3, 4, 5]);
+	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+		[5, 4, 3, 10, 9, 7, 2, 1, 0]);
+	
+	for(var i=0; i<ANIM_MAX; i++)
+	{
+		this.sprite.setAnimationOffset(i, -55, -87);
+	}
+	
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
 	this.width = 66;
@@ -55,9 +70,9 @@ var Player = function(){
 
 
 Player.prototype.Update = function(deltaTime) {
-
 	
-
+	this.sprite.update(deltaTime);
+	
 	GRAVITY = METER * 9.8 * 3;
 
 	var tx = pixel2Tile(this.x);
@@ -242,23 +257,23 @@ Player.prototype.respawn = function(){
 
 Player.prototype.Draw = function(_cam_x, _cam_y){
 	
-
-	context.save();
-
-		context.translate(this.x + _cam_x, this.y + _cam_y);
-		context.rotate(this.rotation);
-		context.drawImage(this.image, 
-							-this.width/2,
-							-this.height/2)
-
-	context.restore();
-
-	context.save();
-
-	context.beginPath();
-	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
-	context.stroke();
-	context.restore();
+	this.sprite.draw(context, this.x, this.y);
+//	context.save();
+//
+//		context.translate(this.x + _cam_x, this.y + _cam_y);
+//		context.rotate(this.rotation);
+//		context.drawImage(this.image, 
+//							-this.width/2,
+//							-this.height/2)
+//
+//	context.restore();
+//
+//	context.save();
+//
+//	context.beginPath();
+//	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
+//	context.stroke();
+//	context.restore();
 
 };
 
