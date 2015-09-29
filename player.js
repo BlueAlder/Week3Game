@@ -59,6 +59,8 @@ var Player = function(){
 
 	this.score = 0;
 
+	this.hasKey = false;
+
 	
 
 	this.direction = LEFT;
@@ -86,7 +88,10 @@ Player.prototype.Update = function(deltaTime) {
 	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
 	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
 	
-	var cellDoor = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
+	var cellPortal = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
+	var cellKey = cellAtTileCoord(LAYER_KEYS, tx, ty);
+	var cellDoor = cellAtTileCoord(LAYER)
+
 
 
 	var left, right, jump;
@@ -124,6 +129,10 @@ Player.prototype.Update = function(deltaTime) {
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
 		CurrentLevel = level1_blue;
 		initialize(CurrentLevel);
+	}
+
+	else if ((keyboar.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		this.hasKey = true;
 	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
