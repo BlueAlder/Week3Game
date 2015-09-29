@@ -25,11 +25,11 @@ var Player = function(){
 	this.sprite = new Sprite("p1_spritesheet.png");
 	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
 		[4]);
-	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
 		[13, 13]);
-	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,
 		[0, 1, 2, 7, 9, 10, 3, 4, 5]);
-	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
+	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
 		[5, 4, 3, 10, 9, 7, 2, 1, 0]);
 	
 	for(var i=0; i<ANIM_MAX; i++)
@@ -39,8 +39,8 @@ var Player = function(){
 	
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
-	this.width = 66;
-	this.height = 92;
+	this.width = 73.5;
+	this.height = 95;
 
 	this.velocityX =  0;
 	this.velocityY = 0;
@@ -97,7 +97,8 @@ Player.prototype.Update = function(deltaTime) {
 	if(keyboard.isKeyDown(keyboard.KEY_LEFT)){
 		left = true;
 		this.direction = LEFT;
-		
+		if(this.sprite.currentAnimation != ANIM_WALK_LEFT)
+			this.sprite.setAnimation(ANIM_WALK_LEFT);
 	}
 
 
@@ -237,8 +238,8 @@ Player.prototype.Update = function(deltaTime) {
 Player.prototype.respawn = function(){
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
-	this.width = 159;
-	this.height = 163;
+	this.width = 73.5;
+	this.height = 95;
 
 	this.offset_x = -55;
 	this.offset_y = -87;
