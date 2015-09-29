@@ -24,7 +24,7 @@ var Player = function(){
 	
 	this.sprite = new Sprite("p1_spritesheet.png");
 	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
-		[4, 10]);
+		[4]);
 	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
 		[13, 13]);
 	this.sprite.buildAnimation(7, 3, 72, 97, 0.05,
