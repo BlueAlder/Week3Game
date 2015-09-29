@@ -88,9 +88,9 @@ Player.prototype.Update = function(deltaTime) {
 	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
 	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
 	
-	var cellPortal = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
-	var cellKey = cellAtTileCoord(LAYER_KEYS, tx, ty);
-	//var cellDoor = cellAtTileCoord(LAYER)
+	var cellPortal 	= cellAtTileCoord(LAYER_PORTAL, tx, 		ty);
+	var cellKey 	= cellAtTileCoord(LAYER_KEYS, 	   tx, 		ty);
+	var cellDoor 	= cellAtTileCoord(LAYER_DOORS,    tx, 		ty);
 
 
 
@@ -126,9 +126,17 @@ Player.prototype.Update = function(deltaTime) {
 			this.sprite.setAnimation(ANIM_JUMP);
 	}
 	
-	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
-		CurrentLevel = level1_blue;
-		initialize(CurrentLevel);
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal){
+		if (CurrentLevel == level1_green){
+			CurrentLevel = level1_blue;
+			initialize(CurrentLevel);
+		}
+		else if (CurrentLevel == level1_blue){
+			CurrentLevel = level1_green;
+			initialize(CurrentLevel);
+		}
+
+		
 	}
 
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
