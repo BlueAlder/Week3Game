@@ -119,7 +119,7 @@ Player.prototype.Update = function(deltaTime) {
 	
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
 		CurrentLevel = level1_blue;
-		initialize(level1_blue);
+		initialize(CurrentLevel);
 	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
