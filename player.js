@@ -181,7 +181,7 @@ Player.prototype.Update = function(deltaTime) {
 
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
-		curGameState = GAMESTATE_ENDGAME
+		curGameState = GAMESTATE_WIN
 	}
 
 

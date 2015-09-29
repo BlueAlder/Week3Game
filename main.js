@@ -43,6 +43,7 @@ var Cam_ratio = 0.05;
 var GAMESTATE_SPLASH = 0;
 var GAMESTATE_GAME = 1;
 var GAMESTATE_ENDGAME = 2;
+var GAMESTATE_WIN = 3;
 var curGameState = GAMESTATE_SPLASH;
 
 
@@ -76,6 +77,13 @@ function runSplash(deltaTime){
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
 	}
+}
+
+function runWin(deltaTime){
+	context.fillStyle = "red";
+	context.font = "50px Impact";
+	var textMeasure = context.measureText("YOU WIN");
+	context.fillText("YOU WIN", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 }
 
 function checkCollision(_cam_x, _cam_y){
@@ -170,8 +178,8 @@ function endGame(deltaTime){
 	drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("HAH, YOU SUCK.");
-	context.fillText("HAH, YOU SUCK", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("RIP IN PEPPERONIS");
+	context.fillText("RIP IN PEPPERONIS", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 
 
 
@@ -223,6 +231,8 @@ function run()
 		case GAMESTATE_ENDGAME:
 			endGame();
 			break;
+		case GAMESTATE_WIN:
+			runWin(deltaTime);
 
 	}
 	//updateCanvasSize();
