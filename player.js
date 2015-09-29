@@ -313,6 +313,7 @@ Player.prototype.respawn = function(){
 
 	this.hasKey = false;
 	CurrentLevel = level1_green;
+	initialize(CurrentLevel);
 }
 
 
