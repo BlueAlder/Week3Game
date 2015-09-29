@@ -151,8 +151,8 @@ function runGame(deltaTime){
 	}
 
 	 
-	//Cam_x = lerp(Cam_x, new_pos_x, Cam_ratio );
-	//Cam_y = lerp(Cam_y, new_pos_y, Cam_ratio );
+	Cam_x = lerp(Cam_x, new_pos_x, Cam_ratio );
+	Cam_y = lerp(Cam_y, new_pos_y, Cam_ratio );
 
 
 	drawMap(Cam_x, Cam_y);
