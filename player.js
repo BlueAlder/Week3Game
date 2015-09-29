@@ -7,7 +7,7 @@ var JUMP = METER * 1500;
 var FRICTION = MAXDX * 6;
 
 
-
+var SWAP_BUFFER = 0.5;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -55,7 +55,10 @@ var Player = function(){
 
 	this.lives = 3;
 	this.shooting = false;
-	this.ammo = 7;
+	
+
+	this.swapBuffer = SWAP_BUFFER;
+	this.swapAllowed = true;
 
 	this.score = 0;
 
@@ -115,14 +118,17 @@ Player.prototype.Update = function(deltaTime) {
 		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
 			this.sprite.setAnimation(ANIM_WALK_RIGHT);
 	}
+
+	//reset to idle animation
 	else {
-		if(this.jumping == false && this.fallig == false)
+		if(this.jumping == false && this.falling == false)
 		{
 			if(this.sprite.currentAnimation != ANIM_IDLE)
 			this.sprite.setAnimation(ANIM_IDLE);
 		}
 	}
 	
+	//set jumping animation
 	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
 		jump = true;
 		this.score += 1;
@@ -130,7 +136,9 @@ Player.prototype.Update = function(deltaTime) {
 			this.sprite.setAnimation(ANIM_JUMP);
 	}
 	
-	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal){
+
+	//check for a reality swap
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
 		if (CurrentLevel == level1_green){
 			CurrentLevel = level1_blue;
 			initialize(CurrentLevel);
@@ -140,9 +148,21 @@ Player.prototype.Update = function(deltaTime) {
 			initialize(CurrentLevel);
 		}
 
-		
+		this.swapAllowed = false;
 	}
 
+	if (!this.swapAllowed){
+		this.swapBuffer -= deltaTime;
+
+		if (this.swapBuffer <= 0){
+			this.swapBuffer = SWAP_BUFFER;
+			this.swapAllowed = true;
+		}
+	}
+
+
+
+	//the player gains the key
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		this.hasKey = true;
 	}
