@@ -70,9 +70,9 @@ var fpsTime = 0;
 
 function runSplash(deltaTime){
 	context.fillStyle = "black";
-	context.font = "40px Arial";
-	var textMeasure = context.measureText("Press Enter to Start");
-	context.fillText("Press Enter to Start", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	context.font = "30px Arial";
+	var textMeasure = context.measureText("Press Enter to Start and Ctrl to interact.");
+	context.fillText("Press Enter to Start and Ctrl to interact.", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
