@@ -90,7 +90,7 @@ Player.prototype.Update = function(deltaTime) {
 	
 	var cellPortal = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
 	var cellKey = cellAtTileCoord(LAYER_KEYS, tx, ty);
-	var cellDoor = cellAtTileCoord(LAYER)
+	//var cellDoor = cellAtTileCoord(LAYER)
 
 
 
