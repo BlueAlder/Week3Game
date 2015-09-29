@@ -69,7 +69,7 @@ var fpsTime = 0;
 
 
 function runSplash(deltaTime){
-	context.fillStyle = "#ff00ff";
+	context.fillStyle = "black";
 	context.font = "40px Arial";
 	var textMeasure = context.measureText("Press Enter to Start");
 	context.fillText("Press Enter to Start", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
@@ -80,10 +80,10 @@ function runSplash(deltaTime){
 }
 
 function runWin(deltaTime){
-	context.fillStyle = "red";
+	context.fillStyle = "white";
 	context.font = "50px Impact";
-	var textMeasure = context.measureText("YOU WIN");
-	context.fillText("YOU WIN", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("Success");
+	context.fillText("Success", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 }
 
 function checkCollision(_cam_x, _cam_y){
@@ -178,8 +178,8 @@ function endGame(deltaTime){
 	drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("RIP IN PEPPERONIS");
-	context.fillText("RIP IN PEPPERONIS", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("You Died...");
+	context.fillText("You Died...", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 
 
 
