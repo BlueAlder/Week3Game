@@ -8,7 +8,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = 0.5;
-var LIVES = 69;
+var LIVES = 1;
 
 var LEFT = 0;
 var RIGHT = 1;
