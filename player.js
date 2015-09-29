@@ -25,11 +25,11 @@ var Player = function(){
 	this.sprite = new Sprite("p1_spritesheet.png");
 	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
 		[4]);
-	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
+	this.sprite.buildAnimation(7, 3, 73, 94, 0.05,
 		[13, 13]);
 	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,
 		[0, 1, 2, 7, 9, 10, 3, 4, 5]);
-	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
+	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,
 		[5, 4, 3, 10, 9, 7, 2, 1, 0]);
 	
 	for(var i=0; i<ANIM_MAX; i++)
@@ -107,7 +107,8 @@ Player.prototype.Update = function(deltaTime) {
 	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT)){
 		right = true;
 		this.direction = RIGHT;
-		
+		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
+			this.sprite.setAnimation(ANIM_WALK_RIGHT);
 	}
 
 	
@@ -116,6 +117,8 @@ Player.prototype.Update = function(deltaTime) {
 	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
 		jump = true;
 		this.score += 1;
+		if(this.sprite.currentAnimation != ANIM_JUMP)
+			this.sprite.setAnimation(ANIM_JUMP);
 	}
 	
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
