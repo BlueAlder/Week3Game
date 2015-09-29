@@ -131,7 +131,7 @@ Player.prototype.Update = function(deltaTime) {
 		initialize(CurrentLevel);
 	}
 
-	else if ((keyboarD.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		this.hasKey = true;
 	}
 
