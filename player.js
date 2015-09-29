@@ -152,7 +152,7 @@ Player.prototype.Update = function(deltaTime) {
 	if (jump && !this.jumping && !falling){
 		ddy -= JUMP;
 		this.jumping = true;
-		
+		this.sprite.setAnimation(ANIM_JUMP)
 	}
 
 	
