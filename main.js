@@ -133,7 +133,7 @@ function runGame(deltaTime){
 
 	var new_pos_x = chuck.x - SCREEN_WIDTH/2;
 	var new_pos_y = chuck.y - SCREEN_HEIGHT/2;
-
+	
 	if (new_pos_x < left_stop){
 		new_pos_x = left_stop;
 	}
@@ -149,7 +149,7 @@ function runGame(deltaTime){
 	else if (new_pos_y > bottom_stop){
 		new_pos_y = bottom_stop;
 	}
-
+	
 	 
 	Cam_x = lerp(Cam_x, new_pos_x, Cam_ratio );
 	Cam_y = lerp(Cam_y, new_pos_y, Cam_ratio );
