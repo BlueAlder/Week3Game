@@ -5,13 +5,6 @@ var Vector2 = function()
 	this.y = 0;
 }
 
-//SET HELPER
-Vector2.prototype.set = function(x, y)
-{
-	this.x = x;
-	this.y = y;
-}
-
 //ADDITION FUNCTION
 Vector2.prototype.add = function( other_vector )
 {
@@ -62,4 +55,11 @@ Vector2.prototype.normalize = function()
 	result.y = this.y / len;
 	
 	return result;
+}
+
+//SET HELPER
+Vector2.prototype.set = function(x, y)
+{
+	this.x = x;
+	this.y = y;
 }
