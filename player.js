@@ -1,13 +1,13 @@
 var METER  = TILE;
-var GRAVITY = METER * 9.8 * 2.5;
+var GRAVITY = METER * 9.8 * document.getElementById("gravityInput").value;
 var MAXDX = METER * 10;
 var MAXDY = METER * 15;
 var ACCEL = MAXDX * 2;
-var JUMP = METER * 1800;
+var JUMP = METER * document.getElementById("jumpInput").value;
 var FRICTION = MAXDX * 6;
 
 
-var SWAP_BUFFER = 0.5;
+var SWAP_BUFFER = document.getElementById("swapInput").value;
 var LIVES = 3;
 
 var LEFT = 0;
@@ -73,13 +73,20 @@ var Player = function(){
 
 };
 
+function updateGlobals(){
+	GRAVITY = METER * 9.8 * document.getElementById("gravityInput").value;
+	SWAP_BUFFER = document.getElementById("swapInput").value;
+	JUMP = METER * document.getElementById("jumpInput").value;
 
+
+}
 
 Player.prototype.Update = function(deltaTime) {
 	
 	this.sprite.update(deltaTime);
 	
-	GRAVITY = METER * 8 * 3;
+	updateGlobals();
+	
 
 	var tx = pixel2Tile(this.x);
 	var ty = pixel2Tile(this.y);
