@@ -39,7 +39,7 @@ var Player = function(){
 	
 	this.x = SCREEN_WIDTH/2;
 	this.y = SCREEN_HEIGHT/2;
-	this.width = 73.5;
+	this.width = 72.5;
 	this.height = 95;
 
 	this.velocityX =  0;
@@ -51,13 +51,15 @@ var Player = function(){
 	this.jumping = false;
 
 	this.offset_x = -55;
-	this.offset_y = -87;
+	this.offset_y = -87
 
 	this.lives = 3;
 	this.shooting = false;
 	this.ammo = 7;
 
 	this.score = 0;
+
+	this.hasKey = false;
 
 	
 
@@ -86,7 +88,10 @@ Player.prototype.Update = function(deltaTime) {
 	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
 	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
 	
-	var cellDoor = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
+	var cellPortal = cellAtTileCoord(LAYER_DOORS, tx, 		ty);
+	var cellKey = cellAtTileCoord(LAYER_KEYS, tx, ty);
+	var cellDoor = cellAtTileCoord(LAYER)
+
 
 
 	var left, right, jump;
@@ -124,6 +129,10 @@ Player.prototype.Update = function(deltaTime) {
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor){
 		CurrentLevel = level1_blue;
 		initialize(CurrentLevel);
+	}
+
+	else if ((keyboar.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		this.hasKey = true;
 	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
@@ -261,7 +270,7 @@ Player.prototype.respawn = function(){
 
 Player.prototype.Draw = function(_cam_x, _cam_y){
 	
-	this.sprite.draw(context, this.x, this.y);
+	this.sprite.draw(context, this.x + (this.width/2), this.y + (this.height/2));
 //	context.save();
 //
 //		context.translate(this.x + _cam_x, this.y + _cam_y);
@@ -275,7 +284,8 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 	context.save();
 
 	context.beginPath();
-	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
+
+	//context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
 	context.stroke();
 	context.restore();
 
