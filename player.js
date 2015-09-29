@@ -8,6 +8,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = 0.5;
+var LIVES = 3;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -53,7 +54,7 @@ var Player = function(){
 	this.offset_x = -55;
 	this.offset_y = -87
 
-	this.lives = 3;
+	this.lives = LIVES;
 	this.shooting = false;
 	
 

@@ -168,6 +168,8 @@ function runGame(deltaTime){
 	
 	chuck.Draw(Cam_x, Cam_y);
 
+	drawHUD();
+
 
 
 }
@@ -212,7 +214,12 @@ function lerp(left_value, right_value, ratio){
 
 function run()
 {
-	context.fillStyle = "#0000ff";		
+	if(CurrentLevel == level1_green){
+		context.fillStyle = "#07f";	
+	}
+	else if (CurrentLevel == level1_blue){
+		context.fillStyle = "#f70";
+	}			
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	
