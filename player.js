@@ -8,7 +8,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = 0.5;
-var LIVES = 3;
+var LIVES = 69;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -39,7 +39,7 @@ var Player = function(){
 	}
 	
 	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/2;
+	this.y = SCREEN_HEIGHT/1.2;
 	this.width = 72.5;
 	this.height = 95;
 
@@ -300,7 +300,7 @@ Player.prototype.Update = function(deltaTime) {
 
 Player.prototype.respawn = function(){
 	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/2;
+	this.y = SCREEN_HEIGHT/1.2;
 	this.width = 73.5;
 	this.height = 95;
 
