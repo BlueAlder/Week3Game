@@ -272,12 +272,12 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 //
 //	context.restore();
 //
-//	context.save();
-//
-//	context.beginPath();
-//	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
-//	context.stroke();
-//	context.restore();
+	context.save();
+
+	context.beginPath();
+	context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
+	context.stroke();
+	context.restore();
 
 };
 
