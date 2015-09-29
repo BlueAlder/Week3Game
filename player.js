@@ -39,7 +39,7 @@ var Player = function(){
 	}
 	
 	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/2;
+	this.y = SCREEN_HEIGHT/1.2;
 	this.width = 72.5;
 	this.height = 95;
 
@@ -307,7 +307,7 @@ Player.prototype.Update = function(deltaTime) {
 
 Player.prototype.respawn = function(){
 	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/2;
+	this.y = SCREEN_HEIGHT/1.2;
 	this.width = 73.5;
 	this.height = 95;
 
