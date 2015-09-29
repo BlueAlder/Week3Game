@@ -304,8 +304,8 @@ Player.prototype.respawn = function(){
 	this.angularVelocity = 0;
 	this.rotation = 0;
 
-	this.shooting = false;
-	this.ammo = 7;
+	this.hasKey = false;
+	CurrentLevel = level1_green;
 }
 
 
