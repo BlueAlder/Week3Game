@@ -8,7 +8,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = document.getElementById("swapInput").value;
-var LIVES = 1;
+var LIVES = 3;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -249,7 +249,7 @@ Player.prototype.Update = function(deltaTime) {
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
 
 
-	/*if (this.y > SCREEN_HEIGHT){
+	if (this.y > CurrentLevel.height * TILE){
 			this.lives --;
 			if (this.lives <= 0){
 				curGameState = GAMESTATE_ENDGAME;
@@ -260,7 +260,7 @@ Player.prototype.Update = function(deltaTime) {
 				this.respawn();
 			}
 
-		}*/
+		}
 	
 
 
@@ -340,8 +340,8 @@ Player.prototype.respawn = function(){
 	initialize(CurrentLevel);
 }
 
-
 };
+
 
 Player.prototype.Draw = function(_cam_x, _cam_y){
 	
