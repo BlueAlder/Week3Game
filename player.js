@@ -166,6 +166,16 @@ Player.prototype.Update = function(deltaTime) {
 			context.globalAlpha = 1;
 			initialize(CurrentLevel);
 		}
+
+		else if (CurrentLevel == level2_green){
+			CurrentLevel = level2_blue;
+			initialize(CurrentLevel);
+		}
+
+		else if (CurrentLevel == level2_blue){
+			CurrentLevel = level2_green;
+			initialize(CurrentLevel);
+		}
 		
 
 		this.swapAllowed = false;
@@ -239,7 +249,7 @@ Player.prototype.Update = function(deltaTime) {
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
 
 
-	if (this.y > SCREEN_HEIGHT){
+	/*if (this.y > SCREEN_HEIGHT){
 			this.lives --;
 			if (this.lives <= 0){
 				curGameState = GAMESTATE_ENDGAME;
@@ -250,7 +260,7 @@ Player.prototype.Update = function(deltaTime) {
 				this.respawn();
 			}
 
-		}
+		}*/
 	
 
 

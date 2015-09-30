@@ -33,11 +33,17 @@ tileset.src = CurrentLevel.tilesets[0].image;
 
 
 
+function updateLevel(){
+    MAP.tw = CurrentLevel.layers[LAYER_GROUND].width;
+    MAP.th = CurrentLevel.layers[LAYER_GROUND].height;
+}
+
+
 
 var cells = [];                 //array that holds our simplified collision data
-function initialize(_level){
+    function initialize(_level){
 
-
+    updateLevel();
 
 
 
@@ -115,8 +121,8 @@ function cellAtTileCoord(layer, tx, ty){
 
 var MAP = {
 
-    tw: CurrentLevel.layers[0].width,
-    th: CurrentLevel.layers[0].height
+    tw: CurrentLevel.layers[LAYER_GROUND].width,
+    th: CurrentLevel.layers[LAYER_GROUND].height
 
 };
 

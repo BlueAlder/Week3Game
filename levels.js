@@ -240,7 +240,7 @@ var level2_green = { "height":20,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/tileset.png",
+         "image":"tileset.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":2,
@@ -327,7 +327,7 @@ var level2_blue = { "height":20,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/tileset.png",
+         "image":"tileset.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":2,
