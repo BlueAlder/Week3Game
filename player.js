@@ -47,6 +47,7 @@ var Player = function(){
 	this.width = 72.5;
 	this.height = 95;
 
+
 	this.velocityX =  0;
 	this.velocityY = 0;
 	this.angularVelocity = 0;
@@ -64,6 +65,7 @@ var Player = function(){
 
 	this.swapBuffer = SWAP_BUFFER;
 	this.swapAllowed = true;
+	this.timeInBlue = 0;
 
 	this.score = 0;
 
@@ -169,9 +171,13 @@ Player.prototype.Update = function(deltaTime) {
 			}
 
 			if (CurrentLevel == 2){
+<<<<<<< HEAD
+				CurrentMap = level2_blue;			
+=======
 				CurrentMap = level1_blue;
 				normal_background.stop();
 				alternate_background.play();
+>>>>>>> 7285fba7a35f6de7f536316714f660c550cb66ea
 			}
 
 			context.globalAlpha = 0.1;

@@ -8,7 +8,7 @@ var normal_background;
 var alternate_background;
 
 
-
+initialize(CurrentMap);
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
@@ -85,7 +85,8 @@ var alternate_background = new Howl(
 
 function runSplash(deltaTime){
 	
-
+	context.fillStyle = "#ccc";
+	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	
 	context.fillStyle = "black";
 	context.font = "30px Arial";
@@ -149,8 +150,21 @@ function checkCollision(_cam_x, _cam_y){
 	}	
 }
 
+function updateAlpha(deltaTime){
+	chuck.timeInBlue += deltaTime
+	context.globalAlpha = 1/(chuck.timeInBlue+1);
+}
+
 function runGame(deltaTime){
 	
+	if(CurrentColour == GREEN){
+		context.fillStyle = "#07f";	
+	}
+	else if (CurrentColour == BLUE){
+		context.fillStyle = "#f70";
+		updateAlpha(deltaTime);
+	}			
+	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	chuck.Update(deltaTime);
 
@@ -200,7 +214,7 @@ function runGame(deltaTime){
 function endGame(deltaTime){
 	
 
-	drawMap();
+	//drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
 	var textMeasure = context.measureText("WASTED");
@@ -229,7 +243,7 @@ var chuck = new Player();
 
 
 
-initialize(level1_green);
+//initialize(level1_green);
 
 
 
@@ -239,14 +253,8 @@ function lerp(left_value, right_value, ratio){
 
 function run()
 {
-	if(CurrentMap == level1_green){
-		context.fillStyle = "#07f";	
-	}
-	else if (CurrentMap == level1_blue){
-		context.fillStyle = "#f70";
-	}			
-	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	
+	//add a background rect
 	
 	
 	var deltaTime = getDeltaTime();
