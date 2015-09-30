@@ -172,11 +172,9 @@ Player.prototype.Update = function(deltaTime) {
 
 			if (CurrentLevel == 2){
 
-
-				CurrentMap = level2_blue;			
+				CurrentMap = level2_blue;	
 				normal_background.stop();
 				alternate_background.play();
-
 			}
 
 			

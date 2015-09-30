@@ -106,8 +106,8 @@ function runSplash(deltaTime){
 function runWin(deltaTime){
 	context.fillStyle = "white";
 	context.font = "50px Impact";
-	var textMeasure = context.measureText("CONGLATURATIONS");
-	context.fillText("CONGLATURATIONS", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("CONGLATURATION");
+	context.fillText("CONGLATURATION", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 	normal_background.stop();
 	alternate_background.stop();
 }
