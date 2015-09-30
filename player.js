@@ -322,18 +322,7 @@ Player.prototype.Update = function(deltaTime) {
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
 
 
-	if (this.y > CurrentMap.height * TILE){
-			this.lives --;
-			if (this.lives <= 0){
-				curGameState = GAMESTATE_ENDGAME;
-
-			}
-
-			else{
-				this.respawn();
-			}
-
-		}
+	
 	
 
 
@@ -353,6 +342,21 @@ Player.prototype.Update = function(deltaTime) {
 	//else{
 	//	this.rotation = 0;
 	//}
+
+
+	if (this.y > CurrentMap.height * TILE){
+			this.lives --;
+			if (this.lives <= 0){
+				curGameState = GAMESTATE_ENDGAME;
+
+			}
+
+			else{
+				this.respawn();
+				
+			}
+
+	}
 
 	//CEILING
 	if(this.velocityY > 0){
@@ -393,6 +397,8 @@ Player.prototype.Update = function(deltaTime) {
 			this.velocityX = 0;
 		}
 	}
+
+
 }
 
 Player.prototype.respawn = function(){
