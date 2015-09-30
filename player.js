@@ -193,7 +193,9 @@ Player.prototype.Update = function(deltaTime) {
 
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
-		curGameState = GAMESTATE_WIN
+		//curGameState = GAMESTATE_WIN
+		CurrentLevel = level2_green;
+		this.respawn();
 	}
 
 
@@ -324,7 +326,7 @@ Player.prototype.respawn = function(){
 	this.rotation = 0;
 
 	this.hasKey = false;
-	CurrentLevel = level1_green;
+	//CurrentLevel = level1_green;
 	initialize(CurrentLevel);
 }
 
