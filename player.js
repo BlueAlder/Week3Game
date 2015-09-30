@@ -12,7 +12,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = document.getElementById("swapInput").value;
-var LIVES = 3;
+var LIVES = 10;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -177,6 +177,12 @@ Player.prototype.Update = function(deltaTime) {
 				alternate_background.play();
 			}
 
+			else if (CurrentLevel == 3){
+				CurrentMap = level3_blue;
+				alternate_background.stop();
+				normal_background.play();
+			}
+
 			
 			CurrentColour = BLUE;
 			initialize(CurrentMap);
@@ -190,6 +196,12 @@ Player.prototype.Update = function(deltaTime) {
 			}
 			else if (CurrentLevel == 2){
 				CurrentMap = level2_green;
+				alternate_background.stop();
+				normal_background.play();
+			}
+
+			else if (CurrentLevel == 3){
+				CurrentMap = level3_green;
 				alternate_background.stop();
 				normal_background.play();
 			}
@@ -257,6 +269,12 @@ Player.prototype.Update = function(deltaTime) {
 		}
 
 		else if (CurrentLevel == 2){
+			CurrentLevel = 3
+			this.respawn();
+			
+		}
+
+		else if (CurrentLevel == 3){
 			curGameState = GAMESTATE_WIN;
 		}
 
@@ -400,6 +418,12 @@ Player.prototype.respawn = function(){
 	else if (CurrentLevel == 2){
 		CurrentMap = level2_green;
 	}
+
+	else if (CurrentLevel == 3){
+		CurrentMap = level3_green;
+	}
+
+	CurrentColour = GREEN;
 
 	initialize(CurrentMap);
 }

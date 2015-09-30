@@ -228,9 +228,9 @@ function endGame(deltaTime){
 
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		
-		chuck.respawn();
 		chuck.lives = LIVES;
 		chuck.score = 0;
+		chuck.respawn();
 		curGameState = GAMESTATE_GAME;
 	}
 
