@@ -239,7 +239,7 @@ Player.prototype.Update = function(deltaTime) {
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
 		
 		if (CurrentLevel == 1){
-			CurrentMap = level2_green;
+			CurrentLevel = 2;
 			this.respawn();
 		}
 
@@ -409,7 +409,7 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 
 	context.beginPath();
 
-	//context.rect(this.x - (this.width/2)  , this.y - (this.height/2), this.width, this.height);
+	context.rect(this.x - (this.width/2) - _cam_x  , this.y - (this.height/2) - _cam_y, this.width, this.height);
 	context.stroke();
 	context.restore();
 
