@@ -171,13 +171,10 @@ Player.prototype.Update = function(deltaTime) {
 			}
 
 			if (CurrentLevel == 2){
-<<<<<<< HEAD
 				CurrentMap = level2_blue;			
-=======
 				CurrentMap = level1_blue;
 				normal_background.stop();
 				alternate_background.play();
->>>>>>> 7285fba7a35f6de7f536316714f660c550cb66ea
 			}
 
 			context.globalAlpha = 0.1;
