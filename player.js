@@ -402,8 +402,11 @@ Player.prototype.Update = function(deltaTime) {
 }
 
 Player.prototype.respawn = function(){
-	this.x = 320;
-	this.y = 455;
+	normal_background.stop();
+	alternate_background.stop();
+	normal_background.play();
+	this.x = SCREEN_WIDTH/2;
+	this.y = SCREEN_HEIGHT/1.2;
 	this.width = 73.5;
 	this.height = 95;
 

@@ -95,8 +95,8 @@ function runSplash(deltaTime){
 	
 	context.fillstyle = "black";
 	context.font = "20px Arial";
-	var textMeasure = context.measureText("Trip at own risk");
-	context.fillText("Trip at own risk", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
+	var textMeasure = context.measureText("Arrow keys to move");
+	context.fillText("Arrow keys to move", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
 
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
@@ -142,6 +142,8 @@ function checkCollision(_cam_x, _cam_y){
 				curGameState = GAMESTATE_ENDGAME;
 			}
 			else{
+				alternate_background.stop();
+				normal_background.play();
 				chuck.respawn();
 
 			}
@@ -154,8 +156,7 @@ function checkCollision(_cam_x, _cam_y){
 
 function updateAlpha(deltaTime){
 	chuck.timeInBlue += deltaTime
-	context.globalAlpha = 1/(10*chuck.timeInBlue+1);
-	console.log(context.globalAlpha);
+	context.globalAlpha = 1/(chuck.timeInBlue+1);
 }
 
 function runGame(deltaTime){
@@ -237,6 +238,7 @@ function endGame(deltaTime){
 		chuck.lives = LIVES;
 		chuck.score = 0;
 		chuck.respawn();
+		normal_background.play();
 		curGameState = GAMESTATE_GAME;
 	}
 
