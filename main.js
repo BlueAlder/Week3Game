@@ -67,7 +67,7 @@ var fpsTime = 0;
 
 var alternate_background = new Howl(
 {
-	urls: ["alnternate lvl theme.wav"],
+	urls: ["normal lvl theme.wav"],
 	loop: true,
 	buffer: true,
 	volume: 0.1
