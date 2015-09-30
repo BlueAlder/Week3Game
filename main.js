@@ -4,7 +4,8 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
-
+var normal_background;
+var alternate_background;
 
 
 
@@ -47,7 +48,6 @@ var GAMESTATE_WIN = 3;
 var curGameState = GAMESTATE_SPLASH;
 
 
-
 //function updateCanvasSize() {
 //	SCREEN_WIDTH = window.innerWidth;
 //	SCREEN_HEIGHT = window.innerHeight;
@@ -65,10 +65,19 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
-
-
+var alternate_background = new Howl(
+{
+	urls: ["alnternate lvl theme.wav"],
+	loop: true,
+	buffer: true,
+	volume: 0.1
+} );
+alternate_background.play();
 
 function runSplash(deltaTime){
+	
+
+	
 	context.fillStyle = "black";
 	context.font = "30px Arial";
 	var textMeasure = context.measureText("Press Enter to Start and Ctrl to interact.");
