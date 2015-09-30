@@ -203,8 +203,10 @@ function endGame(deltaTime){
 	drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("you died...");
-	context.fillText("you died...", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("WASTED");
+	context.fillText("WASTED", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	normal_background.stop();
+	alternate_background.stop();
 
 
 
