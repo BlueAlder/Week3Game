@@ -219,8 +219,13 @@ function endGame(deltaTime){
 	//drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("WASTED");
-	context.fillText("WASTED", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("HAH, YOU SUCK");
+	context.fillText("HAH, YOU SUCK", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	
+	context.font = "25px Arial";
+	context.fillStyle = "black";
+	var textMeasure = context.measureText("press enter to respawn");
+	context.fillText("press enter to respawn", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
 	normal_background.stop();
 	alternate_background.stop();
 
