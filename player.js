@@ -8,7 +8,7 @@ var FRICTION = MAXDX * 6;
 
 
 var SWAP_BUFFER = document.getElementById("swapInput").value;
-var LIVES = 3;
+var LIVES = 1;
 
 var LEFT = 0;
 var RIGHT = 1;
@@ -186,7 +186,7 @@ Player.prototype.Update = function(deltaTime) {
 
 		if (this.swapBuffer <= 0){
 			this.swapBuffer = SWAP_BUFFER;
-			context.globalAlpha = 1;
+			//context.globalAlpha = 1;
 			this.swapAllowed = true;
 			
 		}

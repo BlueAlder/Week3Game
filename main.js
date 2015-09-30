@@ -73,6 +73,11 @@ function runSplash(deltaTime){
 	context.font = "30px Arial";
 	var textMeasure = context.measureText("Press Enter to Start and Ctrl to interact.");
 	context.fillText("Press Enter to Start and Ctrl to interact.", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	
+	context.fillstyle = "black";
+	context.font = "20px Arial";
+	var textMeasure = context.measureText("Trip at own risk");
+	context.fillText("Trip at own risk", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
 
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
@@ -180,8 +185,8 @@ function endGame(deltaTime){
 	drawMap();
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("You Died...");
-	context.fillText("You Died...", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("HAH, YOU SUCK!");
+	context.fillText("HAH, YOU SUCK!", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 
 
 
