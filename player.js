@@ -424,6 +424,7 @@ Player.prototype.respawn = function(){
 	}
 
 	CurrentColour = GREEN;
+	context.globalAlpha = 1;
 
 	initialize(CurrentMap);
 }
