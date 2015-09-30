@@ -174,14 +174,6 @@ Player.prototype.Update = function(deltaTime) {
 
 
 				CurrentMap = level2_blue;			
-
-				CurrentMap = level1_blue;
-				normal_background.stop();
-				alternate_background.play();
-
-
-				CurrentMap = level2_blue;			
-				CurrentMap = level1_blue;
 				normal_background.stop();
 				alternate_background.play();
 
@@ -401,6 +393,7 @@ Player.prototype.respawn = function(){
 	this.angularVelocity = 0;
 	this.rotation = 0;
 
+	this.timeInBlue = 0;
 	this.hasKey = false;
 	//CurrentMap = level1_green;
 	if (CurrentLevel== 1){

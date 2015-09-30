@@ -13,6 +13,9 @@ emptyKey.src = "Graphics and Animation/HUD/hud_keyYellow_disabled.png";
 function drawHUD(){
 	context.save();
 
+	var previousAlpha = context.globalAlpha;
+	context.globalAlpha = 1;
+
 	for (var imageOffset = 0; imageOffset < chuck.lives; imageOffset++){
 		context.drawImage(fullHeart, 5 + (fullHeart.width* imageOffset), 5);
 	}
@@ -28,5 +31,8 @@ function drawHUD(){
 	else if (chuck.hasKey){
 		context.drawImage(fullKey, SCREEN_WIDTH - emptyKey.width - 5, 5);
 	}
+
+	context.restore();
+	context.globalAlpha = previousAlpha;
 
 }
