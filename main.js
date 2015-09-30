@@ -65,6 +65,15 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var normal_background = new Howl(
+{
+	urls: ["normal lvl theme.wav"],
+	loop: true,
+	buffer: true,
+	volume: 0.1
+} );
+//normal_background.play();
+
 var alternate_background = new Howl(
 {
 	urls: ["alnternate lvl theme.wav"],
@@ -72,7 +81,7 @@ var alternate_background = new Howl(
 	buffer: true,
 	volume: 0.1
 } );
-alternate_background.play();
+//alternate_background.play();
 
 function runSplash(deltaTime){
 	
