@@ -166,11 +166,18 @@ Player.prototype.Update = function(deltaTime) {
 		if (CurrentColour == GREEN){
 			if (CurrentLevel == 1){			//check which map to swap to 
 				CurrentMap = level1_blue;
-
+				normal_background.stop();
+				alternate_background.play();
 			}
 
 			if (CurrentLevel == 2){
+<<<<<<< HEAD
 				CurrentMap = level2_blue;			
+=======
+				CurrentMap = level1_blue;
+				normal_background.stop();
+				alternate_background.play();
+>>>>>>> 7285fba7a35f6de7f536316714f660c550cb66ea
 			}
 
 			context.globalAlpha = 0.1;
@@ -181,9 +188,13 @@ Player.prototype.Update = function(deltaTime) {
 		else if (CurrentColour == BLUE){
 			if (CurrentLevel == 1){
 				CurrentMap = level1_green;
+				alternate_background.stop();
+				normal_background.play();
 			}
 			else if (CurrentLevel == 2){
 				CurrentMap = level2_green;
+				alternate_background.stop();
+				normal_background.play();
 			}
 
 			context.globalAlpha = 1;
