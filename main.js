@@ -228,10 +228,10 @@ function lerp(left_value, right_value, ratio){
 
 function run()
 {
-	if(CurrentLevel == level1_green){
+	if(CurrentMap == level1_green){
 		context.fillStyle = "#07f";	
 	}
-	else if (CurrentLevel == level1_blue){
+	else if (CurrentMap == level1_blue){
 		context.fillStyle = "#f70";
 	}			
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
