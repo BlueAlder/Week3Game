@@ -47,6 +47,7 @@ var Player = function(){
 	this.width = 72.5;
 	this.height = 95;
 
+
 	this.velocityX =  0;
 	this.velocityY = 0;
 	this.angularVelocity = 0;
@@ -64,6 +65,7 @@ var Player = function(){
 
 	this.swapBuffer = SWAP_BUFFER;
 	this.swapAllowed = true;
+	this.timeInBlue = 0;
 
 	this.score = 0;
 
@@ -168,7 +170,7 @@ Player.prototype.Update = function(deltaTime) {
 			}
 
 			if (CurrentLevel == 2){
-				CurrentMap = level1_blue;			
+				CurrentMap = level2_blue;			
 			}
 
 			context.globalAlpha = 0.1;
