@@ -72,7 +72,7 @@ var normal_background = new Howl(
 	buffer: true,
 	volume: 0.1
 } );
-//normal_background.play();
+normal_background.play();
 
 var alternate_background = new Howl(
 {
