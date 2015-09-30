@@ -220,11 +220,17 @@ function initialize(_level){
 
                         //for each tile we find in the layer data, we nbeed to creat 4 collisions
                         //because our collision quares are 35x35 but the tile in the level are 70x70
+                    if ( y == 0 ){
+                        cells[layerIdx][y][x+1] = 1;
+                        cells[layerIdx][y][x] = 1;
+                    }
 
-                    cells[layerIdx][y][x] = 1;
-                    cells[layerIdx][y-1][x] = 1;
-                    cells[layerIdx][y-1][x+1] = 1;
-                    cells[layerIdx][y][x+1] = 1;
+                    else{
+                        cells[layerIdx][y][x] = 1;
+                        cells[layerIdx][y-1][x] = 1;
+                        cells[layerIdx][y-1][x+1] = 1;
+                        cells[layerIdx][y][x+1] = 1;
+                    }
 
                 }
 

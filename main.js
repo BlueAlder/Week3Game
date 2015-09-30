@@ -38,7 +38,7 @@ var SCREEN_HEIGHT = canvas.height;
 
 var Cam_x = 0;
 var Cam_y = 0;
-var Cam_ratio = 0.05;
+var Cam_ratio = document.getElementById("camInput").value;
 
 var GAMESTATE_SPLASH = 0;
 var GAMESTATE_GAME = 1;

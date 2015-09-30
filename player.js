@@ -77,6 +77,7 @@ function updateGlobals(){
 	GRAVITY = METER * 9.8 * document.getElementById("gravityInput").value;
 	SWAP_BUFFER = document.getElementById("swapInput").value;
 	JUMP = METER * document.getElementById("jumpInput").value;
+	Cam_ratio = document.getElementById("camInput").value;
 
 
 }
@@ -154,13 +155,15 @@ Player.prototype.Update = function(deltaTime) {
 
 	//check for a reality swap
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
-	
+		
 		if (CurrentLevel == level1_green){
 			CurrentLevel = level1_blue;
+			context.globalAlpha = 0.1;			//change alpha
 			initialize(CurrentLevel);
 		}
 		else if (CurrentLevel == level1_blue){
 			CurrentLevel = level1_green;
+			context.globalAlpha = 1;
 			initialize(CurrentLevel);
 		}
 		
@@ -173,6 +176,7 @@ Player.prototype.Update = function(deltaTime) {
 
 		if (this.swapBuffer <= 0){
 			this.swapBuffer = SWAP_BUFFER;
+			context.globalAlpha = 1;
 			this.swapAllowed = true;
 			
 		}
