@@ -396,8 +396,8 @@ Player.prototype.Update = function(deltaTime) {
 }
 
 Player.prototype.respawn = function(){
-	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/1.2;
+	this.x = 320;
+	this.y = 455;
 	this.width = 73.5;
 	this.height = 95;
 

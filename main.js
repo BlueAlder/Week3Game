@@ -154,7 +154,8 @@ function checkCollision(_cam_x, _cam_y){
 
 function updateAlpha(deltaTime){
 	chuck.timeInBlue += deltaTime
-	context.globalAlpha = 1/(chuck.timeInBlue+1);
+	context.globalAlpha = 1/(10*chuck.timeInBlue+1);
+	console.log(context.globalAlpha);
 }
 
 function runGame(deltaTime){
