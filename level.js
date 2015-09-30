@@ -1,13 +1,16 @@
-
+var GREEN = 0;
+var BLUE = 1;
 
 
 //var jsonURL = levels/gree-map.json;
 //var jsonString = JSON.stringify("levels/gree-map.json");
 //var jsonObj = JSON.parse(jsonString);
 
-var CurrentLevel = level1_green;
+var CurrentMap = level1_green;
+var CurrentLevel = 1;
+var CurrentColour = GREEN;
 
-var LAYER_COUNT = CurrentLevel.layers.length;
+var LAYER_COUNT = CurrentMap.layers.length;
 
 var LAYER_BACKGROUND = 0;  
 var LAYER_GROUND =     1;   
@@ -18,24 +21,28 @@ var LAYER_PORTAL =     4;
 
 
 
-var TILESET_PADDING = CurrentLevel.tilesets[0].margin;
+var TILESET_PADDING = CurrentMap.tilesets[0].margin;
 
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
-var TILE = CurrentLevel.tilewidth;
-var TILESET_TILE = CurrentLevel.tilesets[0].tilewidth;
-var TILESET_SPACING = CurrentLevel.tilesets[0].spacing;
+var TILE = CurrentMap.tilewidth;
+var TILESET_TILE = CurrentMap.tilesets[0].tilewidth;
+var TILESET_SPACING = CurrentMap.tilesets[0].spacing;
 
 var tileset = document.createElement("img");
-tileset.src = CurrentLevel.tilesets[0].image;
+tileset.src = CurrentMap.tilesets[0].image;
 
 
 
 
 function updateLevel(){
-    MAP.tw = CurrentLevel.layers[LAYER_GROUND].width;
-    MAP.th = CurrentLevel.layers[LAYER_GROUND].height;
+    TILE = CurrentMap.tilewidth;
+    TILESET_TILE = CurrentMap.tilesets[0].tilewidth;
+    TILESET_SPACING = CurrentMap.tilesets[0].spacing;
+    tileset.src = CurrentMap.tilesets[0].image;
+    MAP.tw = CurrentMap.layers[LAYER_GROUND].width;
+    MAP.th = CurrentMap.layers[LAYER_GROUND].height;
 }
 
 
@@ -121,8 +128,8 @@ function cellAtTileCoord(layer, tx, ty){
 
 var MAP = {
 
-    tw: CurrentLevel.layers[LAYER_GROUND].width,
-    th: CurrentLevel.layers[LAYER_GROUND].height
+    tw: CurrentMap.layers[LAYER_GROUND].width,
+    th: CurrentMap.layers[LAYER_GROUND].height
 
 };
 
@@ -155,16 +162,16 @@ function drawMap(_cam_x, _cam_y){
     for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++){
         var idx = 0
 
-        for (var y = 0; y < CurrentLevel.layers[layerIdx].height; y++){
+        for (var y = 0; y < CurrentMap.layers[layerIdx].height; y++){
 
-            for ( var x = 0; x < CurrentLevel.layers[layerIdx].width; x++){
+            for ( var x = 0; x < CurrentMap.layers[layerIdx].width; x++){
 
-                if( CurrentLevel.layers[layerIdx].data[idx] != 0){
+                if( CurrentMap.layers[layerIdx].data[idx] != 0){
 
 
                     //the tiles in the Tiled map are base 1 (meaning a value of 0 means no tile), so subtract one form the tilset id to get the
                     //correct tile
-                    var tileIndex = CurrentLevel.layers[layerIdx].data[idx]-1;
+                    var tileIndex = CurrentMap.layers[layerIdx].data[idx]-1;
                     var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
                     var sy = TILESET_PADDING + (Math.floor(tileIndex/TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
                     

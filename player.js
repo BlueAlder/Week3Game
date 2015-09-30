@@ -1,10 +1,14 @@
 var METER  = TILE;
 var GRAVITY = METER * 9.8 * document.getElementById("gravityInput").value;
-var MAXDX = METER * 10;
+var MAXDX = METER * document.getElementById("xVelInput").value;
 var MAXDY = METER * 15;
 var ACCEL = MAXDX * 2;
 var JUMP = METER * document.getElementById("jumpInput").value;
 var FRICTION = MAXDX * 6;
+
+
+
+
 
 
 var SWAP_BUFFER = document.getElementById("swapInput").value;
@@ -78,6 +82,7 @@ function updateGlobals(){
 	SWAP_BUFFER = document.getElementById("swapInput").value;
 	JUMP = METER * document.getElementById("jumpInput").value;
 	Cam_ratio = document.getElementById("camInput").value;
+	MAXDX = METER * document.getElementById("xVelInput").value;
 
 
 }
@@ -156,26 +161,55 @@ Player.prototype.Update = function(deltaTime) {
 	//check for a reality swap
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
 		
-		if (CurrentLevel == level1_green){
-			CurrentLevel = level1_blue;
+		if (CurrentColour == GREEN){
+			if (CurrentLevel == 1){			//check which map to swap to 
+				CurrentMap = level1_blue;
+
+			}
+
+			if (CurrentLevel == 2){
+				CurrentMap = level1_blue;			
+			}
+
+
+			CurrentColour = BLUE;
+			initialize(CurrentMap);
+		}
+
+		else if (CurrentColour == BLUE){
+			if (CurrentLevel == 1){
+				CurrentMap = level1_green;
+			}
+			else if (CurrentLevel == 2){
+				CurrentMap = level2_green;
+			}
+
+			CurrentColour = GREEN;
+			initialize(CurrentMap);
+
+		}
+
+
+		/*if (CurrentMap == level1_green){
+			CurrentMap = level1_blue;
 			context.globalAlpha = 0.1;			//change alpha
-			initialize(CurrentLevel);
+			initialize(CurrentMap);
 		}
-		else if (CurrentLevel == level1_blue){
-			CurrentLevel = level1_green;
+		else if (CurrentMap == level1_blue){
+			CurrentMap = level1_green;
 			context.globalAlpha = 1;
-			initialize(CurrentLevel);
+			initialize(CurrentMap);
 		}
 
-		else if (CurrentLevel == level2_green){
-			CurrentLevel = level2_blue;
-			initialize(CurrentLevel);
+		else if (CurrentMap == level2_green){
+			CurrentMap = level2_blue;
+			initialize(CurrentMap);
 		}
 
-		else if (CurrentLevel == level2_blue){
-			CurrentLevel = level2_green;
-			initialize(CurrentLevel);
-		}
+		else if (CurrentMap == level2_blue){
+			CurrentMap = level2_green;
+			initialize(CurrentMap);
+		}*/
 		
 
 		this.swapAllowed = false;
@@ -203,9 +237,17 @@ Player.prototype.Update = function(deltaTime) {
 
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
-		//curGameState = GAMESTATE_WIN
-		CurrentLevel = level2_green;
-		this.respawn();
+		
+		if (CurrentLevel == 1){
+			CurrentMap = level2_green;
+			this.respawn();
+		}
+
+		else if (CurrentLevel == 2){
+			curGameState = GAMESTATE_WIN;
+		}
+
+		
 	}
 
 
@@ -249,7 +291,7 @@ Player.prototype.Update = function(deltaTime) {
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
 
 
-	if (this.y > CurrentLevel.height * TILE){
+	if (this.y > CurrentMap.height * TILE){
 			this.lives --;
 			if (this.lives <= 0){
 				curGameState = GAMESTATE_ENDGAME;
@@ -336,8 +378,15 @@ Player.prototype.respawn = function(){
 	this.rotation = 0;
 
 	this.hasKey = false;
-	//CurrentLevel = level1_green;
-	initialize(CurrentLevel);
+	//CurrentMap = level1_green;
+	if (CurrentLevel== 1){
+		CurrentMap = level1_green;
+	}
+	else if (CurrentLevel == 2){
+		CurrentMap = level2_green;
+	}
+
+	initialize(CurrentMap);
 }
 
 };
