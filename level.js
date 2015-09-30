@@ -111,9 +111,17 @@ function cellAtPixelCoord(layer, x, y){
 };
 
 function cellAtTileCoord(layer, tx, ty){
-    if (tx < 0 || tx >= MAP.tw || ty < 0){
-        return 1;
+    if (tx < 0 || tx >= MAP.tw || ty < 0){       
+        if(layer == LAYER_GROUND){
+             return 1;
+        }
+        else{
+            return 0;
+        }
     }
+
+ 
+
 
     if(ty >= MAP.th){
         return 0;

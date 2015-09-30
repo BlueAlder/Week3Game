@@ -135,8 +135,8 @@ Player.prototype.Update = function(deltaTime) {
 		
 		if (this.falling == false && this.jumping == false)
 		{
-		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
-			this.sprite.setAnimation(ANIM_WALK_RIGHT);
+			if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
+				this.sprite.setAnimation(ANIM_WALK_RIGHT);
 		}
 	}
 
@@ -145,7 +145,7 @@ Player.prototype.Update = function(deltaTime) {
 		if(this.jumping == false && this.falling == false)
 		{
 			if(this.sprite.currentAnimation != ANIM_IDLE)
-			this.sprite.setAnimation(ANIM_IDLE);
+				this.sprite.setAnimation(ANIM_IDLE);
 		}
 	}
 	
@@ -171,7 +171,7 @@ Player.prototype.Update = function(deltaTime) {
 				CurrentMap = level1_blue;			
 			}
 
-
+			context.globalAlpha = 0.1;
 			CurrentColour = BLUE;
 			initialize(CurrentMap);
 		}
@@ -184,11 +184,13 @@ Player.prototype.Update = function(deltaTime) {
 				CurrentMap = level2_green;
 			}
 
+			context.globalAlpha = 1;
 			CurrentColour = GREEN;
 			initialize(CurrentMap);
 
 		}
 
+		this.swapAllowed = false;
 
 		/*if (CurrentMap == level1_green){
 			CurrentMap = level1_blue;
@@ -212,7 +214,7 @@ Player.prototype.Update = function(deltaTime) {
 		}*/
 		
 
-		this.swapAllowed = false;
+		
 	}
 
 	if (!this.swapAllowed){
@@ -362,6 +364,7 @@ Player.prototype.Update = function(deltaTime) {
 			this.velocityX = 0;
 		}
 	}
+}
 
 Player.prototype.respawn = function(){
 	this.x = SCREEN_WIDTH/2;
@@ -389,7 +392,6 @@ Player.prototype.respawn = function(){
 	initialize(CurrentMap);
 }
 
-};
 
 
 Player.prototype.Draw = function(_cam_x, _cam_y){

@@ -202,7 +202,7 @@ function endGame(deltaTime){
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		
 		chuck.respawn();
-		chuck.lives = 3;
+		chuck.lives = LIVES;
 		chuck.score = 0;
 		curGameState = GAMESTATE_GAME;
 	}
@@ -272,13 +272,13 @@ function run()
 	}		
 		
 	// draw the FPS
-	//context.fillStyle = "#f00";
-	//context.font="14px Arial";
-	//context.fillText("FPS: " + fps, 5, 20, 100);
-//
-//	//context.fillStyle = "#ff00ff";
-//	//context.font="30px Arial";
-	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 40);
+	context.fillStyle = "#f00";
+	context.font="14px Arial";
+	context.fillText("FPS: " + fps, 5, 60, 100);
+
+	context.fillStyle = "#ff00ff";
+	context.font="30px Arial";
+	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
 }
 
 
