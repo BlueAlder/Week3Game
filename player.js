@@ -171,6 +171,7 @@ Player.prototype.Update = function(deltaTime) {
 			}
 
 			if (CurrentLevel == 2){
+<<<<<<< HEAD
 
 				CurrentMap = level2_blue;			
 
@@ -178,6 +179,12 @@ Player.prototype.Update = function(deltaTime) {
 				normal_background.stop();
 				alternate_background.play();
 
+=======
+				CurrentMap = level2_blue;			
+				CurrentMap = level1_blue;
+				normal_background.stop();
+				alternate_background.play();
+>>>>>>> 44e8e3562069c07a755abdbd7d796f8604acb3cd
 			}
 
 			
