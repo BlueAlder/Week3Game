@@ -106,8 +106,10 @@ function runSplash(deltaTime){
 function runWin(deltaTime){
 	context.fillStyle = "white";
 	context.font = "50px Impact";
-	var textMeasure = context.measureText("Success");
-	context.fillText("Success", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("CONGLATURATIONS");
+	context.fillText("CONGLATURATIONS", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	normal_background.stop();
+	alternate_background.stop();
 }
 
 function checkCollision(_cam_x, _cam_y){
