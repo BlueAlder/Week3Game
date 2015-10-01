@@ -25,6 +25,8 @@ var MAX_LEVEL = 3;
 
 var TILESET_PADDING = CurrentMap.tilesets[0].margin;
 
+
+//this is for the tileset cropping
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
@@ -91,6 +93,8 @@ var cells = [];                 //array that holds our simplified collision data
         }
     }
 };
+
+
 
 
 
@@ -188,6 +192,17 @@ function drawMap(_cam_x, _cam_y){
                     }
                     else{
                         context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE - Math.floor(_cam_x), (y-1)*TILE - Math.floor(_cam_y), TILESET_TILE, TILESET_TILE);
+
+                    }
+
+                    if(layerIdx == LAYER_GROUND){
+                        //context.save();
+
+                        //context.beginPath();
+
+                        //context.rect(x*TILE - Math.floor(_cam_x), (y-1)*TILE - Math.floor(_cam_y), TILESET_TILE, TILESET_TILE );
+                        //context.stroke();
+                        //context.restore();
 
                     }
                 }
