@@ -6,6 +6,7 @@ var endFrameMillis = Date.now();
 
 var normal_background;
 var alternate_background;
+var win_theme;
 
 
 initialize(CurrentMap);
@@ -82,6 +83,14 @@ var alternate_background = new Howl(
 	volume: 0.1
 } );
 //alternate_background.play();
+
+var win_theme = new Howl(
+{
+	urls: ["victory theme.wav"],
+	loop: false,
+	buffer:true,
+	volume: 0.1
+} );
 
 function runSplash(deltaTime){
 	

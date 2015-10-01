@@ -275,6 +275,7 @@ Player.prototype.Update = function(deltaTime) {
 		}
 
 		else if (CurrentLevel == 3){
+			win_theme.play();
 			curGameState = GAMESTATE_WIN;
 		}
 
