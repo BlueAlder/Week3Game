@@ -6,6 +6,24 @@ var ACCEL = MAXDX * 2;
 var JUMP = METER * document.getElementById("jumpInput").value;
 var FRICTION = MAXDX * 6;
 
+<<<<<<< HEAD
+=======
+var self = this;
+this.is_key_sfx_playing = false;
+
+this.jump_sfx = new Howl(
+{
+	urls: ["Picked Coin Echo 2.wav"],
+	buffer: true,
+	volume: 0.5,
+	onend: function(){
+		self.is_key_sfx_playing = false;
+	}
+});
+
+
+
+>>>>>>> 5f491bdc55e71201f2358cc9504a0a2d530decd5
 var SWAP_BUFFER = document.getElementById("swapInput").value;
 var LIVES = 3;
 
@@ -77,9 +95,22 @@ var Player = function(){
 	{
 		urls: ["jump_11.wav"],
 		buffer: true,
-		volume: 0.7,
+		volume: 0.5,
 		onend: function(){
 			self.is_jump_sfx_playing = false;
+		}
+	});
+	
+	var self = this;
+	this.is_key_sfx_playing = false;
+
+	this.key_sfx = new Howl(
+	{
+		urls: ["Picked Coin Echo 2.wav"],
+		buffer: true,
+		volume: 0.5,
+		onend: function(){
+			self.is_key_sfx_playing = false;
 		}
 	});
 };
@@ -119,20 +150,20 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	var cellKey 	= cellAtTileCoord(LAYER_KEYS, 	   tx, 		ty);
 	var cellDoor 	= cellAtTileCoord(LAYER_DOORS,     tx, 		ty);
 
-	context.save();
-		context.fillStyle = "red";
-		context.fillRect(tx * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx + 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx + 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx - 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx - 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-	context.restore();
+	//context.save();
+	//	context.fillStyle = "red";
+	//	context.fillRect(tx * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx + 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx + 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx - 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx - 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//context.restore();
 
-	context.save();
-		context.fillStyle = "blue";
-		context.fillRect(this.x - 5 - _cam_x, this.y - 5 - _cam_y, 10, 10);
-	context.restore();
+	//context.save();
+	//	context.fillStyle = "blue";
+	//	context.fillRect(this.x - 5 - _cam_x, this.y - 5 - _cam_y, 10, 10);
+	//context.restore();
 
 	var left, right, jump;
 	left = right = jump = false;
@@ -252,10 +283,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		
 	}
 
-
-
 	//the player gains the key
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		 
+		this.key_sfx.play();
+		this.is_key_sfx_playing = true;
+		
 		this.hasKey = true;
 	}
 

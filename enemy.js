@@ -13,11 +13,6 @@ var Enemy = function(x, y)
 	this.sprite = new Sprite("enemy.png");
 	this.sprite.buildAnimation(1, 2, 52, 28, 0.05, [1,2]);
 	
-	this.x = 420;
-	this.y = 420;
-	this.width = 51;
-	this.height = 26;
-	
 	this.position = new Vector2();
 	this.position.set(37, 6);
 	
@@ -77,18 +72,5 @@ Enemy.prototype.Update = function(deltaTime)
 		this.velocity.x = bound(this.velocity.x + (dt * ddx),
 										-enemy_MAXDX, enemy_MAXDX);
 	}
-
-};
-
-Enemy.prototype.Draw = function(x, y)
-{
-		this.sprite.draw(context, this.x + (this.width/2) - _cam_x, this.y + (this.height/2) - _cam_y);
-
-	context.save();
-
-	context.beginPath();
-
-	context.rect(this.x - (this.width/2) - _cam_x  , this.y - (this.height/2) - _cam_y, this.width, this.height);
-	context.stroke();
 
 };

@@ -47,10 +47,10 @@ function updateLevel(){
     TILESET_SPACING = CurrentMap.tilesets[0].spacing;
     tileset.src = CurrentMap.tilesets[0].image;
     MAP.tw = CurrentMap.layers[LAYER_GROUND].width;
-    MAP.th = CurrentMap.layers[LAYER_GROUND].height;
+   // MAP.th = CurrentMap.layers[LAYER_GROUND].height;
 }
 
-var enemy = new Enemy(37,6);
+var enemy = new Enemy();
 
 var cells = [];                 //array that holds our simplified collision data
     function initialize(_level){

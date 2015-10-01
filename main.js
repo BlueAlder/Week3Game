@@ -9,6 +9,15 @@ var alternate_background;
 var win_theme;
 
 
+
+var keyboard = new Keyboard();
+var chuck = new Player();
+var fireRain = new Emitter();				//define our objects
+var dustParticles = new Emitter();
+var mouse = new Mouse();
+
+
+
 initialize(CurrentMap);
 // This function will return the time in seconds since the function 
 // was last called
@@ -98,15 +107,43 @@ function runSplash(deltaTime){
 	context.fillStyle = "#ccc";
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	
-	context.fillStyle = "black";
-	context.font = "30px Arial";
-	var textMeasure = context.measureText("Press Enter to Start and Ctrl to interact.");
-	context.fillText("Press Enter to Start and Ctrl to interact.", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("Click me to play!");
 	
-	context.fillstyle = "black";
+	context.save();
+	context.beginPath();
+	context.rect(SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 - (textMeasure.height/2), textMeasure.width, textMeasure.height);
+	context.restore();
+
+	if((mouse.x >= SCREEN_WIDTH/2 - (textMeasure.width/2) && mouse.x <= SCREEN_WIDTH/2 + textMeasure.width/2) && 
+		(mouse.y >= SCREEN_HEIGHT/2 - (textMeasure.height/2) && mouse.y <= SCREEN_HEIGHT/2 + textMeasure.height/2))
+	{
+		context.fillStyle = "red";
+	}
+
+	else{
+		context.fillStyle = "black"
+	}
+
+
+	
+	context.font = "50px Arial";
+	var textMeasure = context.measureText("Zorionak");
+	context.fillText("Zorionak", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 - 100);
+	
+	
 	context.font = "20px Arial";
-	var textMeasure = context.measureText("Arrow keys to move");
-	context.fillText("Arrow keys to move", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
+	var textMeasure = context.measureText("Click me to play!");
+	context.fillText("Click me to play!", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
+
+
+
+
+	if (mouse.mouseState){
+		var mouse_x = mouse.getX;
+		var mouse_y = mouse
+
+
+	}
 	
 	
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
@@ -256,15 +293,15 @@ function runGame(deltaTime){
 
 	drawMap(Cam_x, Cam_y);
 
-	context.globalAlpha = 0.1;
+	
 	chuck.Draw(Cam_x, Cam_y);
-	context.globalAlpha = 1;
+	
 
 	
 
 	drawHUD();
 
-	debug_draw_map(cells, Cam_x, Cam_y);
+	//debug_draw_map(cells, Cam_x, Cam_y);
 
 }
 
@@ -302,10 +339,6 @@ function endGame(deltaTime){
 
 
 
-var keyboard = new Keyboard();
-var chuck = new Player();
-var fireRain = new Emitter();
-var dustParticles = new Emitter();
 
 
 
@@ -365,6 +398,7 @@ function run()
 	context.fillStyle = "#ff00ff";
 	context.font="30px Arial";
 	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+<<<<<<< HEAD
 	
 	for(var i=0; i<enemies.length; i++)
 	{
@@ -375,6 +409,13 @@ function run()
 	{
 		enemies[i].draw(deltaTime);
 	}
+=======
+
+	//draw the mouse
+
+	context.fillStyle = "blue";
+	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+>>>>>>> 5f491bdc55e71201f2358cc9504a0a2d530decd5
 }
 
 
