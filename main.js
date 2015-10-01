@@ -66,6 +66,8 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var coin = new Coin();
+
 var normal_background = new Howl(
 {
 	urls: ["normal lvl theme.wav"],
@@ -106,7 +108,9 @@ function runSplash(deltaTime){
 	context.font = "20px Arial";
 	var textMeasure = context.measureText("Arrow keys to move");
 	context.fillText("Arrow keys to move", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
-
+	
+	coin.draw();
+	
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
 	}
