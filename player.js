@@ -124,20 +124,20 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	var cellKey 	= cellAtTileCoord(LAYER_KEYS, 	   tx, 		ty);
 	var cellDoor 	= cellAtTileCoord(LAYER_DOORS,     tx, 		ty);
 
-	context.save();
-		context.fillStyle = "red";
-		context.fillRect(tx * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx + 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx + 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx - 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
-		context.fillRect((tx - 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
-	context.restore();
+	//context.save();
+	//	context.fillStyle = "red";
+	//	context.fillRect(tx * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx + 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx + 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx - 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+	//	context.fillRect((tx - 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	//context.restore();
 
-	context.save();
-		context.fillStyle = "blue";
-		context.fillRect(this.x - 5 - _cam_x, this.y - 5 - _cam_y, 10, 10);
-	context.restore();
+	//context.save();
+	//	context.fillStyle = "blue";
+	//	context.fillRect(this.x - 5 - _cam_x, this.y - 5 - _cam_y, 10, 10);
+	//context.restore();
 
 	var left, right, jump;
 	left = right = jump = false;
