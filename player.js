@@ -6,11 +6,6 @@ var ACCEL = MAXDX * 2;
 var JUMP = METER * document.getElementById("jumpInput").value;
 var FRICTION = MAXDX * 6;
 
-
-
-
-
-
 var SWAP_BUFFER = document.getElementById("swapInput").value;
 var LIVES = 3;
 

@@ -18,10 +18,14 @@ var LAYER_DOORS =      2;
 var LAYER_KEYS =       3;
 var LAYER_PORTAL =     4;
 
+var METER = TILE;
+
+var ENEMY_MAXDX = METER * 5;
+var ENEMY_ACCEL = ENEMY_MAXDX * 2;
 
 var MAX_LEVEL = 3;
 
-
+var enemies = [];
 
 var TILESET_PADDING = CurrentMap.tilesets[0].margin;
 
@@ -35,9 +39,6 @@ var TILESET_SPACING = CurrentMap.tilesets[0].spacing;
 var tileset = document.createElement("img");
 tileset.src = CurrentMap.tilesets[0].image;
 
-
-
-
 function updateLevel(){
     TILE = CurrentMap.tilewidth;
     TILESET_TILE = CurrentMap.tilesets[0].tilewidth;
@@ -47,7 +48,7 @@ function updateLevel(){
     MAP.th = CurrentMap.layers[LAYER_GROUND].height;
 }
 
-
+var enemy = new Enemy(37,6);
 
 var cells = [];                 //array that holds our simplified collision data
     function initialize(_level){
@@ -92,7 +93,40 @@ var cells = [];                 //array that holds our simplified collision data
     }
 };
 
-
+function initializeEnemies()
+{
+		idx = 0;
+		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+		{
+			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+			{
+				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+				{
+					var px = tile2Pixel(x);
+					var py = tile2Pixel(y);
+					var e = new Enemy(px, py);
+					enemies.push(e);
+				}
+				idx++;
+			}
+		}
+		
+		idx = 0;
+		for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+		{
+			for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+			{
+				if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+				{
+					var px = tile2Pixel(x);
+					var py = tile2Pixel(y);
+					var e = new Enemy(px, py);
+					enemies.push(e);
+				}
+				idx++;
+			}
+		}
+}
 
 
 function cellAtPixelCoord(layer, x, y){
