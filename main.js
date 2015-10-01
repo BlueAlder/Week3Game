@@ -49,11 +49,11 @@ var GAMESTATE_WIN = 3;
 var curGameState = GAMESTATE_SPLASH;
 
 
-//function updateCanvasSize() {
+
 //	SCREEN_WIDTH = window.innerWidth;
 //	SCREEN_HEIGHT = window.innerHeight;
-//	canvas.width = SCREEN_WIDTH;
-//	canvas.height = SCREEN_HEIGHT;
+//var	canvas.width = SCREEN_WIDTH;
+//var	canvas.height = SCREEN_HEIGHT;
 //
 //	drawMap();
 //}
@@ -172,10 +172,24 @@ function runGame(deltaTime){
 	
 	if(CurrentColour == GREEN){
 		context.fillStyle = "#07f";	
+		fireRain.isRunning = false;
 	}
 	else if (CurrentColour == BLUE){
-		context.fillStyle = "#f70";
-		updateAlpha(deltaTime);
+		context.fillStyle = "#f70";	
+
+		updateAlpha(deltaTime);	
+
+		if(!fireRain.isRunning){
+			fireRain.intialize(0, 0, 0, 1, CurrentMap.width * TILE, 0, 3000, 10, 20, 0.5, true);
+						  //(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir)
+			fireRain.isRunning = true;
+		}
+
+		fireRain.update(deltaTime);
+		fireRain.draw(Cam_x, Cam_y);																//(x, y, dir_x, dir_y, width, height, max_particles, 															//	life_time, pps, alpha, is_rand_dir)
+		
+		
+
 	}			
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -218,8 +232,7 @@ function runGame(deltaTime){
 	
 	chuck.Draw(Cam_x, Cam_y);
 
-	example_emitter.update(deltaTime);
-	example_emitter.draw(Cam_x, Cam_y);
+	
 
 	drawHUD();
 
@@ -263,9 +276,8 @@ function endGame(deltaTime){
 
 var keyboard = new Keyboard();
 var chuck = new Player();
+var fireRain = new Emitter();
 
-var example_emitter = new Emitter();
-example_emitter.intialize(940, 200, 1, 0, 3000, 20, 40, 0.5, true);
 
 
 

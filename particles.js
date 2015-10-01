@@ -19,6 +19,8 @@ var Emitter = function(){
 
 	this.alpha = 1.0
 
+	this.isRunning = false;
+
 	this.image = document.createElement("img");
 	this.image.src = "Graphics and Animation/particle.png";
 
@@ -26,6 +28,9 @@ var Emitter = function(){
 	this.dir_y = 1.0;
 
 	this.rand_dir = false;
+
+	this.width = 0;
+	this.height = 0;
 
 	this.particles = [];
 
@@ -36,13 +41,15 @@ var Emitter = function(){
 	this.cur_particle_index = 0;
 }
 
-Emitter.prototype.intialize = function(x, y, dir_x, dir_y, max_particles, 
+Emitter.prototype.intialize = function(x, y, dir_x, dir_y, width, height, max_particles, 
 										life_time, pps, alpha, is_rand_dir)
 {
 	this.x = x;
 	this.y = y;
 	this.dir_x = dir_x;
 	this.dir_y = dir_y;
+	this.width = width;
+	this.height = height;
 
 	this.rand_dir = is_rand_dir;
 
@@ -69,10 +76,15 @@ Emitter.prototype.update = function(deltaTime)
 
 		this.particles[this.cur_particle_index].cur_life_time = this.particles[this.cur_particle_index].life_time;
 
+		if(this.width != 0 || this.height != 0){
+			this.particles[this.cur_particle_index].x += Math.random() * this.width;
+			this.particles[this.cur_particle_index].y += Math.random() * this.height;
+		}
+
 		if(this.rand_dir)
 		{
 			var rand_dir_x = (Math.random() - 0.5) * 2 * 100;
-			var rand_dir_y = (Math.random() - 0.5) * 2 * 100;
+			var rand_dir_y = Math.abs((Math.random() - 0.5) * 2 * 100);
 
 			var length = Math.sqrt(rand_dir_x * rand_dir_x + rand_dir_y * rand_dir_y);
 
