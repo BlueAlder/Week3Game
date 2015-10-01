@@ -57,7 +57,7 @@ var Player = function(){
 	this.jumping = false;
 
 	this.offset_x = -55;
-	this.offset_y = -87
+	this.offset_y = -87;
 
 	this.lives = LIVES;
 	this.shooting = false;
@@ -89,7 +89,7 @@ function updateGlobals(){
 
 }
 
-Player.prototype.Update = function(deltaTime) {
+Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	
 	this.sprite.update(deltaTime);
 	
@@ -99,19 +99,35 @@ Player.prototype.Update = function(deltaTime) {
 	var tx = pixel2Tile(this.x);
 	var ty = pixel2Tile(this.y);
 
-	var nx = this.x % TILE;
-	var ny = this.y % TILE;
+	var nx = this.x  % TILE;
+	var ny = this.y  % TILE;
 
 	var cell = 		 cellAtTileCoord(LAYER_GROUND, tx, 		ty);
+	var cellleft =   cellAtTileCoord(LAYER_GROUND, tx - 1,	ty);
 	var cellRight =	 cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty);
 	var cellDown  =	 cellAtTileCoord(LAYER_GROUND, tx, 		ty + 1);
 	var cellDiag  =  cellAtTileCoord(LAYER_GROUND, tx + 1, 	ty + 1);
+	var cellDiagleft  =  cellAtTileCoord(LAYER_GROUND, tx - 1, 	ty + 1);
+
 	
-	var cellPortal 	= cellAtTileCoord(LAYER_PORTAL, tx, 		ty);
+	var cellPortal 	= cellAtTileCoord(LAYER_PORTAL,    tx, 		ty);
 	var cellKey 	= cellAtTileCoord(LAYER_KEYS, 	   tx, 		ty);
-	var cellDoor 	= cellAtTileCoord(LAYER_DOORS,    tx, 		ty);
+	var cellDoor 	= cellAtTileCoord(LAYER_DOORS,     tx, 		ty);
 
+	context.save();
+		context.fillStyle = "red";
+		context.fillRect(tx * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+		context.fillRect((tx + 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+		context.fillRect((tx) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+		context.fillRect((tx + 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+		context.fillRect((tx - 1) * TILE - _cam_x, ty * TILE - _cam_y, TILE, TILE);
+		context.fillRect((tx - 1) * TILE - _cam_x, (ty + 1) * TILE - _cam_y, TILE, TILE);
+	context.restore();
 
+	context.save();
+		context.fillStyle = "blue";
+		context.fillRect(this.x - 5 - _cam_x, this.y - 5 - _cam_y, 10, 10);
+	context.restore();
 
 	var left, right, jump;
 	left = right = jump = false;
@@ -286,20 +302,11 @@ Player.prototype.Update = function(deltaTime) {
 		this.sprite.setAnimation(ANIM_JUMP)
 	}
 
-	
-	
-
-
 	//calculate the new postioin and velocity:
 	this.x += deltaTime * this.velocityX;
 	this.y += deltaTime * this.velocityY;
 	this.velocityX = bound(this.velocityX + (deltaTime * ddx), -MAXDX, MAXDX);
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
-
-
-	
-	
-
 
 
 	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0))){
@@ -333,10 +340,10 @@ Player.prototype.Update = function(deltaTime) {
 
 	}
 
-	//CEILING
+	////floor
 	if(this.velocityY > 0){
-		if ((cellDown & !cell) || (cellDiag && !cellRight && nx)){
-			this.y = tile2Pixel(ty);									//THERE IS A BUG HERE
+		if ((cellDown & !cell) || (cellDiag && !cellRight && nx) || (!cellleft && cellDiagleft)){
+			this.y = tile2Pixel(ty);									
 			this.velocityY = 0;
 			this.falling = false;
 			this.jumping = false;
@@ -344,9 +351,10 @@ Player.prototype.Update = function(deltaTime) {
 		}
 
 	}
-	//FLOOR
+	
+	//ceiling
 	else if (this.velocityY < 0) {
-		if ((cell && !cellDown) || (cellRight && !cellDiag && nx)){
+		if ((cell && !cellDown) || (cellRight && !cellDiag && nx) || (cellleft && !cellDiagleft)){
 			//calmp the y poition to avoid jumping into platform above
 
 			this.y = tile2Pixel(ty + 1);
@@ -357,6 +365,7 @@ Player.prototype.Update = function(deltaTime) {
 			ny = 0;
 		}
 	}
+	
 
 	if (this.velocityX > 0){
 		if ((cellRight && !cell) || (cellDiag && !cellDown && ny)){
@@ -373,7 +382,7 @@ Player.prototype.Update = function(deltaTime) {
 		}
 	}
 
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){		//player recieves the key
 		this.hasKey = true;
 	}
 

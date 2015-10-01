@@ -165,6 +165,31 @@ function checkCollision(_cam_x, _cam_y){
 	}	
 }
 
+////TODO////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function debug_draw_map(input_cells, _cam_x, _cam_y)
+{
+
+    context.save();
+    context.strokeStyle = "green";
+
+    for(var layerIdx = 0; layerIdx < input_cells.length; layerIdx++)
+    {     
+        for(var y = 0; y < input_cells[layerIdx].length; y++)
+        {
+            for(var x = 0; x < input_cells[layerIdx][y].length; x++)
+            {
+                if(input_cells[layerIdx][y][x] !=  0)
+                {
+                    context.rect(x * TILE- _cam_x, y * TILE - _cam_y, TILE, TILE);
+                    context.stroke();
+                }
+            }
+        }
+    }
+    context.restore();
+}
+
+
 function updateAlpha(deltaTime){
 	chuck.timeInBlue += deltaTime
 	context.globalAlpha = 1/(chuck.timeInBlue+1);
@@ -182,7 +207,7 @@ function runGame(deltaTime){
 		updateAlpha(deltaTime);	
 
 		if(!fireRain.isRunning){
-			fireRain.intialize(0, 0, 0, 1, CurrentMap.width * TILE, 0, 3000, 10, 20, 0.5, true);
+			fireRain.intialize(0, 0, 0, 1, CurrentMap.width * TILE, 0, 3000, 10, 20, 0.5, true, "Graphics and Animation/particle.png");
 						  //(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir)
 			fireRain.isRunning = true;
 		}
@@ -195,7 +220,7 @@ function runGame(deltaTime){
 	}			
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	chuck.Update(deltaTime);
+	chuck.Update(deltaTime, Cam_x, Cam_y);
 
 	
 	//checkCollision();
@@ -231,14 +256,15 @@ function runGame(deltaTime){
 
 	drawMap(Cam_x, Cam_y);
 
-	
+	context.globalAlpha = 0.1;
 	chuck.Draw(Cam_x, Cam_y);
+	context.globalAlpha = 1;
 
 	
 
 	drawHUD();
 
-
+	debug_draw_map(cells, Cam_x, Cam_y);
 
 }
 
@@ -279,6 +305,7 @@ function endGame(deltaTime){
 var keyboard = new Keyboard();
 var chuck = new Player();
 var fireRain = new Emitter();
+var dustParticles = new Emitter();
 
 
 
