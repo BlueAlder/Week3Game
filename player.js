@@ -290,7 +290,11 @@ Player.prototype.Update = function(deltaTime) {
 		ddx -= FRICTION
 	}
 
-	if (jump && !this.jumping && !falling){
+	if (jump && !this.jumping && !falling)
+	{
+		this.jump_sfx.play();
+		this.is_jump_sfx_playing = true;
+		
 		ddy -= JUMP;
 		this.jumping = true;
 		this.sprite.setAnimation(ANIM_JUMP)
