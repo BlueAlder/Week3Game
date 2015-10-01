@@ -234,7 +234,6 @@ Player.prototype.Update = function(deltaTime) {
 
 
 	//the player gains the key
-<<<<<<< HEAD
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		this.hasKey = true;
 	}
@@ -261,8 +260,6 @@ Player.prototype.Update = function(deltaTime) {
 
 		
 	}
-=======
->>>>>>> 104159909a0b18c9d1dae3ba1ceda40371644c75
 
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
