@@ -28,18 +28,18 @@ var ANIM_MAX = 4;
 var Player = function(){
 	
 	this.sprite = new Sprite("p1_spritesheet.png");
-	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,
+	this.sprite.buildAnimation(7, 3, 73.5, 95, 0.05,			//idle
 		[4]);
-	this.sprite.buildAnimation(7, 3, 73, 94, 0.05,
+	this.sprite.buildAnimation(7, 3, 73, 94, 0.05,				//jump
 		[13, 13]);
-	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,
+	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,			
 		[0, 1, 2, 7, 9, 10, 3, 4, 5]);
 	this.sprite.buildAnimation(7, 3, 72.7, 97, 0.05,
 		[5, 4, 3, 10, 9, 7, 2, 1, 0]);
 	
 	for(var i=0; i<ANIM_MAX; i++)
 	{
-		this.sprite.setAnimationOffset(i, -55, -87);
+		this.sprite.setAnimationOffset(i, -70, -95);
 	}
 	
 	this.x = 420;
