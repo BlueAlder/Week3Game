@@ -238,7 +238,6 @@ function endGame(deltaTime){
 		chuck.lives = LIVES;
 		chuck.score = 0;
 		chuck.respawn();
-		normal_background.play();
 		curGameState = GAMESTATE_GAME;
 	}
 
