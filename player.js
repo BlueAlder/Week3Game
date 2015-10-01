@@ -74,9 +74,19 @@ var Player = function(){
 	
 
 	this.direction = LEFT;
-
 	
-
+	var self = this;
+	this.is_jump_sfx_playing = false;
+	
+	this.jump_sfx = new Howl(
+	{
+		urls: ["jump_11.wav"],
+		buffer: true,
+		volume: 0.9,
+		onend: function(){
+			self.is_jump_sfx_playing = false;
+		}
+	});
 };
 
 function updateGlobals(){
