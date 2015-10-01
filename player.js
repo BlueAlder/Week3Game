@@ -242,21 +242,16 @@ Player.prototype.Update = function(deltaTime) {
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
 		
-		if (CurrentLevel == 1){
-			CurrentLevel = 2;
+		if (CurrentLevel != MAX_LEVEL){
+			CurrentLevel += 1;
 			this.respawn();
 		}
 
-		else if (CurrentLevel == 2){
-			CurrentLevel = 3
-			this.respawn();
-			
-		}
-
-		else if (CurrentLevel == 3){
+		else{
 			win_theme.play();
 			curGameState = GAMESTATE_WIN;
 		}
+
 
 		
 	}
@@ -324,7 +319,7 @@ Player.prototype.Update = function(deltaTime) {
 	//}
 
 
-	if (this.y > CurrentMap.height * TILE){
+	if (this.y > CurrentMap.height * TILE + 100){
 			this.lives --;
 			if (this.lives <= 0){
 				curGameState = GAMESTATE_ENDGAME;

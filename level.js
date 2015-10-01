@@ -19,6 +19,8 @@ var LAYER_KEYS =       3;
 var LAYER_PORTAL =     4;
 
 
+var MAX_LEVEL = 3;
+
 
 
 var TILESET_PADDING = CurrentMap.tilesets[0].margin;

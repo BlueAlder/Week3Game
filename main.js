@@ -222,6 +222,9 @@ function runGame(deltaTime){
 	
 	chuck.Draw(Cam_x, Cam_y);
 
+	example_emitter.update(deltaTime);
+	example_emitter.draw(Cam_x, Cam_y);
+
 	drawHUD();
 
 
@@ -231,17 +234,19 @@ function runGame(deltaTime){
 function endGame(deltaTime){
 	
 
-	//drawMap();
+	
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("HAH, YOU SUCK");
-	context.fillText("HAH, YOU SUCK", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("Game Over");
+	context.fillText("Game Over", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 	
 	context.font = "25px Arial";
 	context.fillStyle = "black";
-	var textMeasure = context.measureText("press enter to respawn");
-	context.fillText("press enter to respawn", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
-	normal_background.stop();
+	var textMeasure = context.measureText("Press enter to respawn");
+	context.fillText("Press enter to respawn", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
+	
+
+	normal_background.stop();			//Stop Music
 	alternate_background.stop();
 
 
@@ -262,6 +267,9 @@ function endGame(deltaTime){
 
 var keyboard = new Keyboard();
 var chuck = new Player();
+
+var example_emitter = new Emitter();
+example_emitter.intialize(940, 200, 1, 0, 3000, 20, 40, 0.5, true);
 
 
 
