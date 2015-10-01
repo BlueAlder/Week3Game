@@ -443,7 +443,7 @@ var level3_green = { "height":20,
  "tilewidth":35,
  "version":1,
  "width":100,
- "spawnX":145,
+ "spawnX":40,
  "spawnY":595
 }
 

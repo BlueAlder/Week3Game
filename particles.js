@@ -22,7 +22,6 @@ var Emitter = function(){
 	this.isRunning = false;
 
 	this.image = document.createElement("img");
-	this.image.src = "Graphics and Animation/particle.png";
 
 	this.dir_x = 0.1;
 	this.dir_y = 1.0;
@@ -42,7 +41,7 @@ var Emitter = function(){
 }
 
 Emitter.prototype.intialize = function(x, y, dir_x, dir_y, width, height, max_particles, 
-										life_time, pps, alpha, is_rand_dir)
+										life_time, pps, alpha, is_rand_dir, image_src)
 {
 	this.x = x;
 	this.y = y;
@@ -56,6 +55,8 @@ Emitter.prototype.intialize = function(x, y, dir_x, dir_y, width, height, max_pa
 	this.alpha = alpha;
 
 	this.pps = pps;
+
+	this.image.src = image_src;
 
 	for(var idx = 0; idx < max_particles; idx++){
 		this.particles[idx] = new Particle;
