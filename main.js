@@ -248,13 +248,13 @@ function endGame(deltaTime){
 	
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("Game Over");
-	context.fillText("Game Over", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	var textMeasure = context.measureText("You died . . .");
+	context.fillText("You died . . .", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 	
 	context.font = "25px Arial";
 	context.fillStyle = "black";
-	var textMeasure = context.measureText("Press enter to respawn");
-	context.fillText("Press enter to respawn", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
+	var textMeasure = context.measureText("Press enter to try again");
+	context.fillText("Press enter to try again", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
 	
 
 	normal_background.stop();			//Stop Music
