@@ -82,7 +82,7 @@ var Player = function(){
 	{
 		urls: ["jump_11.wav"],
 		buffer: true,
-		volume: 0.9,
+		volume: 0.7,
 		onend: function(){
 			self.is_jump_sfx_playing = false;
 		}
