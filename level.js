@@ -119,20 +119,14 @@ function cellAtTileCoord(layer, tx, ty){
             return 0;
         }
     }
-
- 
-
-
     if(ty >= MAP.th){
         return 0;
     }
 
     return cells[layer][ty][tx];
-
-
-
-
 };
+
+
 
 var MAP = {
 

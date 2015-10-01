@@ -215,27 +215,6 @@ Player.prototype.Update = function(deltaTime) {
 
 		this.swapAllowed = false;
 
-		/*if (CurrentMap == level1_green){
-			CurrentMap = level1_blue;
-			context.globalAlpha = 0.1;			//change alpha
-			initialize(CurrentMap);
-		}
-		else if (CurrentMap == level1_blue){
-			CurrentMap = level1_green;
-			context.globalAlpha = 1;
-			initialize(CurrentMap);
-		}
-
-		else if (CurrentMap == level2_green){
-			CurrentMap = level2_blue;
-			initialize(CurrentMap);
-		}
-
-		else if (CurrentMap == level2_blue){
-			CurrentMap = level2_green;
-			initialize(CurrentMap);
-		}*/
-		
 
 		
 	}
@@ -255,6 +234,7 @@ Player.prototype.Update = function(deltaTime) {
 
 
 	//the player gains the key
+<<<<<<< HEAD
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		this.hasKey = true;
 	}
@@ -281,6 +261,8 @@ Player.prototype.Update = function(deltaTime) {
 
 		
 	}
+=======
+>>>>>>> 104159909a0b18c9d1dae3ba1ceda40371644c75
 
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
@@ -362,7 +344,7 @@ Player.prototype.Update = function(deltaTime) {
 	//CEILING
 	if(this.velocityY > 0){
 		if ((cellDown & !cell) || (cellDiag && !cellRight && nx)){
-			this.y = tile2Pixel(ty);
+			this.y = tile2Pixel(ty);									//THERE IS A BUG HERE
 			this.velocityY = 0;
 			this.falling = false;
 			this.jumping = false;
@@ -399,29 +381,36 @@ Player.prototype.Update = function(deltaTime) {
 		}
 	}
 
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		this.hasKey = true;
+	}
+
+
+	//player has key and is at the door
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
+		
+		if (CurrentLevel == 1){
+			CurrentLevel = 2;
+			this.respawn();
+		}
+
+		else if (CurrentLevel == 2){
+			CurrentLevel = 3
+			this.respawn();
+			
+		}
+
+		else if (CurrentLevel == 3){
+			curGameState = GAMESTATE_WIN;
+		}
+
+		
+	}
 
 }
 
 Player.prototype.respawn = function(){
-	normal_background.stop();
-	alternate_background.stop();
-	normal_background.play();
-	this.x = SCREEN_WIDTH/2;
-	this.y = SCREEN_HEIGHT/1.2;
-	this.width = 73.5;
-	this.height = 95;
 
-	this.offset_x = -55;
-	this.offset_y = -87;
-
-	this.velocityX =  0;
-	this.velocityY = 0;
-	this.angularVelocity = 0;
-	this.rotation = 0;
-
-	this.timeInBlue = 0;
-	this.hasKey = false;
-	//CurrentMap = level1_green;
 	if (CurrentLevel== 1){
 		CurrentMap = level1_green;
 	}
@@ -437,6 +426,28 @@ Player.prototype.respawn = function(){
 	context.globalAlpha = 1;
 
 	initialize(CurrentMap);
+	
+	normal_background.stop();
+	alternate_background.stop();
+	normal_background.play();
+	this.x = CurrentMap.spawnX;
+	this.y = CurrentMap.spawnY;
+	this.width = 73.5;
+	this.height = 95;
+
+	this.offset_x = -55;
+	this.offset_y = -87;
+
+	this.velocityX =  0;
+	this.velocityY = 0;
+	this.angularVelocity = 0;
+	this.rotation = 0;
+
+	this.timeInBlue = 0;
+	this.hasKey = false;
+	//CurrentMap = level1_green;
+	
+
 }
 
 
