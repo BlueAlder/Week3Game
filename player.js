@@ -74,9 +74,19 @@ var Player = function(){
 	
 
 	this.direction = LEFT;
-
 	
-
+	var self = this;
+	this.is_jump_sfx_playing = false;
+	
+	this.jump_sfx = new Howl(
+	{
+		urls: ["jump_11.wav"],
+		buffer: true,
+		volume: 0.9,
+		onend: function(){
+			self.is_jump_sfx_playing = false;
+		}
+	});
 };
 
 function updateGlobals(){
@@ -296,7 +306,11 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		ddx -= FRICTION
 	}
 
-	if (jump && !this.jumping && !falling){
+	if (jump && !this.jumping && !falling)
+	{
+		this.jump_sfx.play();
+		this.is_jump_sfx_playing = true;
+		
 		ddy -= JUMP;
 		this.jumping = true;
 		this.sprite.setAnimation(ANIM_JUMP)
