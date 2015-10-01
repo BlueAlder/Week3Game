@@ -6,8 +6,18 @@ var ACCEL = MAXDX * 2;
 var JUMP = METER * document.getElementById("jumpInput").value;
 var FRICTION = MAXDX * 6;
 
+var self = this;
+this.is_key_sfx_playing = false;
 
-
+this.jump_sfx = new Howl(
+{
+	urls: ["Picked Coin Echo 2.wav"],
+	buffer: true,
+	volume: 0.5,
+	onend: function(){
+		self.is_key_sfx_playing = false;
+	}
+});
 
 
 
@@ -82,9 +92,22 @@ var Player = function(){
 	{
 		urls: ["jump_11.wav"],
 		buffer: true,
-		volume: 0.7,
+		volume: 0.5,
 		onend: function(){
 			self.is_jump_sfx_playing = false;
+		}
+	});
+	
+	var self = this;
+	this.is_key_sfx_playing = false;
+
+	this.key_sfx = new Howl(
+	{
+		urls: ["Picked Coin Echo 2.wav"],
+		buffer: true,
+		volume: 0.5,
+		onend: function(){
+			self.is_key_sfx_playing = false;
 		}
 	});
 };
@@ -257,10 +280,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		
 	}
 
-
-
 	//the player gains the key
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		 
+		this.key_sfx.play();
+		this.is_key_sfx_playing = true;
+		
 		this.hasKey = true;
 	}
 
