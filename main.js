@@ -66,7 +66,6 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
-var coin = new Coin();
 
 var normal_background = new Howl(
 {
@@ -109,7 +108,6 @@ function runSplash(deltaTime){
 	var textMeasure = context.measureText("Arrow keys to move");
 	context.fillText("Arrow keys to move", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
 	
-	coin.draw();
 	
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
