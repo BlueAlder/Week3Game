@@ -322,7 +322,7 @@ function runGame(deltaTime)
 	//for (var i = 0; i < enemies.length; i++)
 	//{
 	//	enemies[i].draw(Cam_x, Cam_y);
-		
+	//	
 	//}
 	
 	chuck.Draw(Cam_x, Cam_y);
@@ -375,11 +375,11 @@ function endGame(deltaTime)
 //function initializeEnemies()
 //{
 //		idx = 0;
-//		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+//		for(var y = 0; y < level0_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
 //		{
-//			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+//			for(var x = 0; x < level0_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
 //			{
-//				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+//				if(level0_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
 //				{
 //					var px = tile2Pixel(x);
 //					var py = tile2Pixel(y);

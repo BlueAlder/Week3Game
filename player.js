@@ -358,6 +358,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	{
 			this.lives --;
 			if (this.lives <= 0){
+				game_end.play();
 				curGameState = GAMESTATE_ENDGAME;
 
 			}

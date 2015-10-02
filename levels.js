@@ -533,4 +533,3 @@ var level2_blue = { "height":20,
 
 var greenLevels = [level0_green, level1_green, level2_green];
 var blueLevels  = [level0_blue, level1_blue, level2_blue];
-
