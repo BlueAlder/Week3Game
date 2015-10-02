@@ -232,7 +232,7 @@ function runGame(deltaTime)
 	else if (CurrentColour == BLUE)
 	{
 		context.fillStyle = "#f70";	
-
+	}
 	if(CurrentColour == GREEN)
 	{
 		context.drawImage(greenBackground, 0, 0);	
