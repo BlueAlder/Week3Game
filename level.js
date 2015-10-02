@@ -6,8 +6,8 @@ var BLUE = 1;
 //var jsonString = JSON.stringify("levels/gree-map.json");
 //var jsonObj = JSON.parse(jsonString);
 
-var CurrentMap = greenLevels[0];
-var CurrentLevel = 0;
+var CurrentMap = greenLevels[2];
+var CurrentLevel = 2;
 var CurrentColour = GREEN;
 
 var LAYER_COUNT = CurrentMap.layers.length;
@@ -25,7 +25,7 @@ var LAYER_PORTAL =     4;
 ////var ENEMY_MAXDX = METER * 5;
 //var ENEMY_ACCEL = ENEMY_MAXDX * 2;
 
-var MAX_LEVEL = 3;
+var MAX_LEVEL = 2;
 
 var TILESET_PADDING = CurrentMap.tilesets[0].margin;
 

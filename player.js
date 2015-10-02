@@ -211,7 +211,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	}
 	
 
-	//check for a reality swap
+	//check for a reality 
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed)
 	{
 		
@@ -267,30 +267,30 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 
 	//the player gains the key
 
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
-	{
-		 
-		key_sfx.play();
-		is_key_sfx_playing = true;
-		
-		this.hasKey = true;
-	}
-
-
-	//player has key and is at the door
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey)
-	{
-		
-		if (CurrentLevel != MAX_LEVEL){
-			CurrentLevel += 1;
-			this.respawn();
-		}
-
-		else{
-			win_theme.play();
-			curGameState = GAMESTATE_WIN;
-		}		
-	}
+	//else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
+//	//{
+//	//	 
+//	//	key_sfx.play();
+//	//	is_key_sfx_playing = true;
+//	//	
+//	//	this.hasKey = true;
+//	//}
+//
+//
+//	////player has key and is at the door
+//	//else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey)
+//	//{
+//	//	
+//	//	if (CurrentLevel != MAX_LEVEL){
+//	//		CurrentLevel += 1;
+//	//		this.respawn();
+//	//	}
+//
+	//	else{
+	//		win_theme.play();
+	//		curGameState = GAMESTATE_WIN;
+	//	}		
+	//}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
 

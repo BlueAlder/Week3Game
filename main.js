@@ -437,18 +437,19 @@ function run()
 		
 	// draw the FPS
 
-	context.fillStyle = "#f00";
-	context.font="14px Arial";
-	context.fillText("FPS: " + fps, 5, 60, 100);
-
-	context.fillStyle = "#ff00ff";
-	context.font="30px Arial";
-	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
-
-	//draw the mouse
-
-	context.fillStyle = "blue";
-	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+	//context.fillStyle = "#f00";
+	//context.font="14px Arial";
+	//context.fillText("FPS: " + fps, 5, 60, 100);
+//	
+	//draw the x and y position
+//	//context.fillStyle = "#ff00ff";
+//	//context.font="30px Arial";
+//	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+//
+//	////draw the mouse
+//
+//	//context.fillStyle = "blue";
+	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
 
 
 	//context.fillStyle = "#f00";
