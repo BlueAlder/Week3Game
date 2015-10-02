@@ -82,7 +82,9 @@ var level1_green ={ "height":15,
         }],
  "tilewidth":35,
  "version":1,
- "width":50
+ "width":50,
+ "spawnX":420,
+ "spawnY":420
 }
 var level1_blue = { "height":15,
  "layers":[
@@ -168,7 +170,9 @@ var level1_blue = { "height":15,
         }],
  "tilewidth":35,
  "version":1,
- "width":50
+ "width":50,
+  "spawnX":200,
+ "spawnY":595
 }
 
 var level2_green = { "height":20,
@@ -344,7 +348,9 @@ var level2_blue = { "height":20,
         }],
  "tilewidth":35,
  "version":1,
- "width":100
+ "width":100,
+  "spawnX":200,
+ "spawnY":595
 }
 
 var level3_green = { "height":20,
@@ -520,5 +526,7 @@ var level3_blue = { "height":20,
         }],
  "tilewidth":35,
  "version":1,
- "width":100
+ "width":100,
+  "spawnX":200,
+ "spawnY":595
 }
