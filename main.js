@@ -351,40 +351,40 @@ function endGame(deltaTime)
 
 }
 
-function initializeEnemies()
-{
-		idx = 0;
-		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
-		{
-			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
-			{
-				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
-				{
-					var px = tile2Pixel(x);
-					var py = tile2Pixel(y);
-					var e = new Enemy(px, py);
-					enemies.push(e);
-				}
-				idx++;
-			}
-		}
-		
-		//idx = 0;
-		//for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
-		//{
-		//	for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
-		//	{
-		//		if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
-		//		{
-		//			var px = tile2Pixel(x);
-		//			var py = tile2Pixel(y);
-		//			var e = new Enemy(px, py);
-		//			enemies.push(e);
-		//		}
-		//		idx++;
-		//	}
-		//}
-}
+//function initializeEnemies()
+//{
+//		idx = 0;
+//		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+//		{
+//			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+//			{
+//				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+//				{
+//					var px = tile2Pixel(x);
+//					var py = tile2Pixel(y);
+//					var e = new Enemy(px, py);
+//					enemies.push(e);
+//				}
+//				idx++;
+//			}
+//		}
+//		
+//		//idx = 0;
+//		//for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+//		//{
+//		//	for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+//		//	{
+//		//		if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+//		//		{
+//		//			var px = tile2Pixel(x);
+//		//			var py = tile2Pixel(y);
+//		//			var e = new Enemy(px, py);
+//		//			enemies.push(e);
+//		//		}
+//		//		idx++;
+//		//	}
+//		//}
+//}
 
 
 
