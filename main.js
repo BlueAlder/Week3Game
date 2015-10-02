@@ -4,19 +4,17 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
-var normal_background;
-var alternate_background;
-var win_theme;
-
-
-
 var keyboard = new Keyboard();
 var chuck = new Player();
 var fireRain = new Emitter();				//define our objects
 var dustParticles = new Emitter();
 var mouse = new Mouse();
 
+
 var enemies = [];
+
+
+normal_background.play();
 
 initialize(CurrentMap);
 // This function will return the time in seconds since the function 
@@ -76,79 +74,55 @@ var fpsCount = 0;
 var fpsTime = 0;
 
 
-var normal_background = new Howl(
-{
-	urls: ["normal lvl theme.wav"],
-	loop: true,
-	buffer: true,
-	volume: 0.1
-} );
-normal_background.play();
 
-var alternate_background = new Howl(
-{
-	urls: ["alnternate lvl theme.wav"],
-	loop: true,
-	buffer: true,
-	volume: 0.1
-} );
-//alternate_background.play();
-
-var win_theme = new Howl(
-{
-	urls: ["victory theme.wav"],
-	loop: false,
-	buffer:true,
-	volume: 0.1
-} );
 
 function runSplash(deltaTime){
 	
 	context.fillStyle = "#ccc";
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	
-	var textMeasure = context.measureText("Click me to play!");
-	
-	context.save();
-	context.beginPath();
-	context.rect(SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 - (textMeasure.height/2), textMeasure.width, textMeasure.height);
-	context.restore();
-
-	if((mouse.x >= SCREEN_WIDTH/2 - (textMeasure.width/2) && mouse.x <= SCREEN_WIDTH/2 + textMeasure.width/2) && 
-		(mouse.y >= SCREEN_HEIGHT/2 - (textMeasure.height/2) && mouse.y <= SCREEN_HEIGHT/2 + textMeasure.height/2))
-	{
-		context.fillStyle = "red";
-	}
-
-	else{
-		context.fillStyle = "black"
-	}
 
 
-	
+	context.fillStyle = "#000"
 	context.font = "50px Arial";
 	var textMeasure = context.measureText("Zorionak");
 	context.fillText("Zorionak", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 - 100);
 	
+	var textMeasure = context.measureText("Click me to play!");
 	
-	context.font = "20px Arial";
+
+	context.fillStyle = "green";
+	context.fillRect(SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5, textMeasure.width, textMeasure.height);
+	context.stroke();
+
+	context.font = "20 px Arial";
+	if ((mouse.x >= SCREEN_WIDTH/2 - (textMeasure.width/2) && mouse.x <= SCREEN_WIDTH/2 + (textMeasure.width/2) ) && 
+		(mouse.y <= SCREEN_HEIGHT/1.5 && mouse.y >= (SCREEN_HEIGHT/1.5) - 20))
+	{
+		context.font = "30px Arial";
+		if (mouse.mouseState)
+		{
+			curGameState = GAMESTATE_GAME;
+		}
+	}
+	
+	else
+	{
+		context.font = "20px Arial";
+	}
+
+	
 	var textMeasure = context.measureText("Click me to play!");
 	context.fillText("Click me to play!", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5);
 
 
 
 
-	if (mouse.mouseState){
-		var mouse_x = mouse.getX;
-		var mouse_y = mouse
-
-
-	}
-	
-	
 	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
 		curGameState = GAMESTATE_GAME;
+
 	}
+	
+
 }
 
 function runWin(deltaTime){
@@ -252,7 +226,8 @@ function runGame(deltaTime){
 		fireRain.update(deltaTime);
 		fireRain.draw(Cam_x, Cam_y);																//(x, y, dir_x, dir_y, width, height, max_particles, 															//	life_time, pps, alpha, is_rand_dir)
 		
-		
+		for (var i = 0; i < enemies.length; i++)
+		enemies[i].update(deltaTime);
 
 	}			
 	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -358,21 +333,21 @@ function initializeEnemies()
 			}
 		}
 		
-		idx = 0;
-		for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
-		{
-			for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
-			{
-				if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
-				{
-					var px = tile2Pixel(x);
-					var py = tile2Pixel(y);
-					var e = new Enemy(px, py);
-					enemies.push(e);
-				}
-				idx++;
-			}
-		}
+		//idx = 0;
+		//for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+		//{
+		//	for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+		//	{
+		//		if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+		//		{
+		//			var px = tile2Pixel(x);
+		//			var py = tile2Pixel(y);
+		//			var e = new Enemy(px, py);
+		//			enemies.push(e);
+		//		}
+		//		idx++;
+		//	}
+		//}
 }
 
 

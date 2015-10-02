@@ -9,6 +9,7 @@ var FRICTION = MAXDX * 6;
 var self = this;
 this.is_key_sfx_playing = false;
 
+
 this.jump_sfx = new Howl(
 {
 	urls: ["Picked Coin Echo 2.wav"],
@@ -19,6 +20,9 @@ this.jump_sfx = new Howl(
 		self.is_key_sfx_playing = false;
 	}
 });
+
+
+
 
 
 var SWAP_BUFFER = document.getElementById("swapInput").value;
@@ -84,21 +88,9 @@ var Player = function(){
 
 	this.direction = LEFT;
 	
-	var self = this;
-	this.is_jump_sfx_playing = false;
 	
-	this.jump_sfx = new Howl(
-	{
-		urls: ["jump_11.wav"],
-		buffer: true,
-		volume: 0.5,
-		onend: function(){
-			self.is_jump_sfx_playing = false;
-		}
-	});
 	
-	var self = this;
-	this.is_key_sfx_playing = false;
+
 
 	this.key_sfx = new Howl(
 	{
@@ -110,6 +102,7 @@ var Player = function(){
 			self.is_key_sfx_playing = false;
 		}
 	});
+
 };
 
 function updateGlobals()
@@ -209,6 +202,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	{
 		jump = true;
 		this.score += 1;
+
 		if(this.sprite.currentAnimation != ANIM_JUMP)
 			this.sprite.setAnimation(ANIM_JUMP);
 	}
@@ -300,8 +294,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
 	{
 		 
-		this.key_sfx.play();
-		this.is_key_sfx_playing = true;
+		key_sfx.play();
+		is_key_sfx_playing = true;
 		
 		this.hasKey = true;
 	}
@@ -355,8 +349,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 
 	if (jump && !this.jumping && !falling)
 	{
-		this.jump_sfx.play();
-		this.is_jump_sfx_playing = true;
+		jump_sfx.play();
+		is_jump_sfx_playing = true;
 		
 		ddy -= JUMP;
 		this.jumping = true;
