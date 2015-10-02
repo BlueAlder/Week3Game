@@ -223,7 +223,6 @@ function updateAlpha(deltaTime)
 function runGame(deltaTime)
 {
 	
-<<<<<<< HEAD
 	if(CurrentColour == GREEN)
 	{
 		context.fillStyle = "#07f";	
@@ -232,14 +231,12 @@ function runGame(deltaTime)
 	else if (CurrentColour == BLUE)
 	{
 		context.fillStyle = "#f70";	
-=======
 	if(CurrentColour == GREEN){
 		context.drawImage(greenBackground, 0, 0);	
 		fireRain.isRunning = false;
 	}
 	else if (CurrentColour == BLUE){
 		context.drawImage(blueBackground, 0, 0);	
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
 
 		updateAlpha(deltaTime);	
 
@@ -428,7 +425,6 @@ function run()
 	}		
 		
 	// draw the FPS
-<<<<<<< HEAD
 	context.fillStyle = "#f00";
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 60, 100);
@@ -442,7 +438,6 @@ function run()
 	context.fillStyle = "blue";
 	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
 
-=======
 	//context.fillStyle = "#f00";
 	//context.font="14px Arial";
 	//context.fillText("FPS: " + fps, 5, 60, 100);
@@ -457,7 +452,6 @@ function run()
 //
 //	//context.fillStyle = "blue";
 	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
 }
 
 

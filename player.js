@@ -292,7 +292,6 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	}
 
 	//the player gains the key
-<<<<<<< HEAD
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
 	{
 		 
@@ -320,9 +319,6 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 
 		
 	}
-=======
-	
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
 
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
@@ -452,11 +448,9 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 			this.velocityX = 0;
 		}
 	}
-
-<<<<<<< HEAD
+	
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
 	{		//player recieves the key
-=======
 	
 	//player gains the key
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
@@ -464,7 +458,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 		key_sfx.play();
 		is_key_sfx_playing = true;
 		
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
+
 		this.hasKey = true;
 	}
 
