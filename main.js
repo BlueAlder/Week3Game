@@ -16,7 +16,7 @@ var fireRain = new Emitter();				//define our objects
 var dustParticles = new Emitter();
 var mouse = new Mouse();
 
-
+var enemies = [];
 
 initialize(CurrentMap);
 // This function will return the time in seconds since the function 
@@ -293,6 +293,10 @@ function runGame(deltaTime){
 
 	drawMap(Cam_x, Cam_y);
 
+	for (var i = 0; i < enemies.length; i++){
+		enemies[i].draw(Cam_x, Cam_y);
+		
+	}
 	
 	chuck.Draw(Cam_x, Cam_y);
 	
@@ -336,14 +340,40 @@ function endGame(deltaTime){
 
 }
 
-
-
-
-
-
-
-
-//initialize(level1_green);
+function initializeEnemies()
+{
+		idx = 0;
+		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+		{
+			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+			{
+				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+				{
+					var px = tile2Pixel(x);
+					var py = tile2Pixel(y);
+					var e = new Enemy(px, py);
+					enemies.push(e);
+				}
+				idx++;
+			}
+		}
+		
+		idx = 0;
+		for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+		{
+			for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+			{
+				if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+				{
+					var px = tile2Pixel(x);
+					var py = tile2Pixel(y);
+					var e = new Enemy(px, py);
+					enemies.push(e);
+				}
+				idx++;
+			}
+		}
+}
 
 
 
@@ -398,24 +428,12 @@ function run()
 	context.fillStyle = "#ff00ff";
 	context.font="30px Arial";
 	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
-<<<<<<< HEAD
-	
-	for(var i=0; i<enemies.length; i++)
-	{
-		enemies[i].update(deltaTime);
-	}
-	
-	for(var i=0; i<enemies.length; i++)
-	{
-		enemies[i].draw(deltaTime);
-	}
-=======
 
 	//draw the mouse
 
 	context.fillStyle = "blue";
 	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
->>>>>>> 5f491bdc55e71201f2358cc9504a0a2d530decd5
+
 }
 
 

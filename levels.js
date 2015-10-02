@@ -534,5 +534,36 @@ var level3_blue = { "height":20,
  "width":100
 }
 
+var GREEN = 0;
+var BLUE = 1;
 
+var CurrentMap = level1_green;
+var CurrentLevel = 1;
+var CurrentColour = GREEN;
+
+var LAYER_COUNT = CurrentMap.layers.length;
+
+var LAYER_BACKGROUND = 0;  
+var LAYER_GROUND =     1;   
+var LAYER_DOORS =      2;
+var LAYER_KEYS =       3;
+var LAYER_PORTAL =     4;
+
+var METER = TILE;
+
+var ENEMY_MAXDX = METER * 5;
+var ENEMY_ACCEL = ENEMY_MAXDX * 2;
+
+var MAX_LEVEL = 3;
+
+var TILESET_PADDING = CurrentMap.tilesets[0].margin;
+
+
+//this is for the tileset cropping
+var TILESET_COUNT_X = 14;
+var TILESET_COUNT_Y = 14;
+
+var TILE = CurrentMap.tilewidth;
+var TILESET_TILE = CurrentMap.tilesets[0].tilewidth;
+var TILESET_SPACING = CurrentMap.tilesets[0].spacing;
 
