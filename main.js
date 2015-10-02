@@ -235,7 +235,7 @@ function debug_draw_map(input_cells, _cam_x, _cam_y)
 function updateAlpha(deltaTime)
 {
 	chuck.timeInBlue += deltaTime
-	context.globalAlpha = 1/(2*chuck.timeInBlue+1);
+	context.globalAlpha = 1/(chuck.timeInBlue+1);
 }
 
 function runGame(deltaTime)
