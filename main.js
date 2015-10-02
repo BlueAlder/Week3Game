@@ -76,7 +76,8 @@ var fpsTime = 0;
 
 
 
-function runSplash(deltaTime){
+function runSplash(deltaTime)
+{
 	
 	//context.fillStyle = "#ccc";
 	//context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -117,7 +118,8 @@ function runSplash(deltaTime){
 
 
 
-	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
+	if (keyboard.isKeyDown(keyboard.KEY_ENTER))
+	{
 		curGameState = GAMESTATE_GAME;
 
 	}
@@ -125,7 +127,8 @@ function runSplash(deltaTime){
 
 }
 
-function runWin(deltaTime){
+function runWin(deltaTime)
+{
 	context.strokeStyle = "black";
 	context.fillStyle = "#6CB3B3"
 	context.lineWidth = 1;
@@ -139,15 +142,14 @@ function runWin(deltaTime){
 	var textMeasure = context.measureText("Times Portaled: " + chuck.timesSwapped);
 	context.fillText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
 	context.strokeText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
-
-
 	
 
 	normal_background.stop();
 	alternate_background.stop();
 }
 
-function checkCollision(_cam_x, _cam_y){
+function checkCollision(_cam_x, _cam_y)
+{
 	var player_min_x = chuck.x + chuck.offset_x;
 	var player_min_y = chuck.y + chuck.offset_y;
 	
@@ -156,7 +158,8 @@ function checkCollision(_cam_x, _cam_y){
 
 
 
-	for (var enemyIndex = 0; enemyIndex < enemies.length; enemyIndex++){
+	for (var enemyIndex = 0; enemyIndex < enemies.length; enemyIndex++)
+	{
 		var enemy_min_x = enemies[enemyIndex].x + enemies[enemyIndex].offset_x;
 		var enemy_min_y = enemies[enemyIndex].y + enemies[enemyIndex].offset_y;
 	
@@ -164,19 +167,23 @@ function checkCollision(_cam_x, _cam_y){
 		var enemy_max_y = enemies[enemyIndex].y + enemies[enemyIndex].height + enemies[enemyIndex].offset_y;
 
 		if ((player_max_x < enemy_min_x || player_min_x > enemy_max_x) ||
-				(player_max_y < enemy_min_y || player_min_y > enemy_max_y)){
+				(player_max_y < enemy_min_y || player_min_y > enemy_max_y))
+		{
 
 			//not colliding
 			continue;
 
 		}
 
-		else{
+		else
+		{
 			chuck.lives --;
-			if(chuck.lives <= 0){
+			if(chuck.lives <= 0)
+			{
 				curGameState = GAMESTATE_ENDGAME;
 			}
-			else{
+			else
+			{
 				alternate_background.stop();
 				normal_background.play();
 				chuck.respawn();
@@ -184,8 +191,6 @@ function checkCollision(_cam_x, _cam_y){
 			}
 			return;
 		}
-		
-
 	}	
 }
 
@@ -480,13 +485,17 @@ function run()
       var _cb = function() { cb(); window.requestAnimationFrame(_cb); }
       _cb();
     };
-  } else if (window.mozRequestAnimationFrame) {
-    onEachFrame = function(cb) {
+  } else if (window.mozRequestAnimationFrame) 
+  {
+    onEachFrame = function(cb) 
+	{
       var _cb = function() { cb(); window.mozRequestAnimationFrame(_cb); }
       _cb();
     };
-  } else {
-    onEachFrame = function(cb) {
+  } else 
+  {
+    onEachFrame = function(cb) 
+	{
       setInterval(cb, 1000 / 60);
     }
   }
