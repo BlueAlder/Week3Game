@@ -187,7 +187,10 @@ function drawMap(_cam_x, _cam_y){
                     if(layerIdx == LAYER_KEYS){
                        
                         if (!chuck.hasKey){
-                             context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE - Math.floor(_cam_x), (y-1)*TILE - Math.floor(_cam_y), TILESET_TILE, TILESET_TILE);
+                            context.save();
+                            context.globalAlpha = 1;
+                            context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE - Math.floor(_cam_x), (y-1)*TILE - Math.floor(_cam_y), TILESET_TILE, TILESET_TILE);
+                            context.restore();
                          }
                     }
                     else{

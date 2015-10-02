@@ -69,7 +69,7 @@ var Player = function(){
 	this.swapAllowed = true;
 	this.timeInBlue = 0;
 
-	this.score = 0;
+	this.timesSwapped = 0;
 
 	this.hasKey = false;
 
@@ -235,6 +235,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		}
 
 		this.swapAllowed = false;
+		this.timesSwapped ++;
 
 
 		
@@ -253,31 +254,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 
 	//the player gains the key
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
-		 
-		key_sfx.play();
-		is_key_sfx_playing = true;
-		
-		this.hasKey = true;
-	}
-
-
-	//player has key and is at the door
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
-		
-		if (CurrentLevel != MAX_LEVEL){
-			CurrentLevel += 1;
-			this.respawn();
-		}
-
-		else{
-			win_theme.play();
-			curGameState = GAMESTATE_WIN;
-		}
-
-
-		
-	}
+	
 
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
@@ -393,7 +370,13 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		}
 	}
 
-	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){		//player recieves the key
+	
+	//player gains the key
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
+		 
+		key_sfx.play();
+		is_key_sfx_playing = true;
+		
 		this.hasKey = true;
 	}
 
@@ -401,23 +384,21 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
 		
-		if (CurrentLevel == 1){
-			CurrentLevel = 2;
+		if (CurrentLevel != MAX_LEVEL){
+			CurrentLevel += 1;
 			this.respawn();
 		}
 
-		else if (CurrentLevel == 2){
-			CurrentLevel = 3
-			this.respawn();
-			
-		}
-
-		else if (CurrentLevel == 3){
+		else{
+			win_theme.play();
 			curGameState = GAMESTATE_WIN;
 		}
 
+
 		
 	}
+
+
 
 }
 
@@ -466,7 +447,11 @@ Player.prototype.respawn = function(){
 
 Player.prototype.Draw = function(_cam_x, _cam_y){
 	
+	context.save();
+
+	context.globalAlpha = 1;
 	this.sprite.draw(context, this.x + (this.width/2) - _cam_x, this.y + (this.height/2) - _cam_y);
+	context.restore();
 //	context.save();
 //
 //		context.translate(this.x + _cam_x, this.y + _cam_y);
@@ -477,13 +462,13 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 //
 //	context.restore();
 //
-	context.save();
-
-	context.beginPath();
-
-	context.rect(this.x - (this.width/2) - _cam_x  , this.y - (this.height/2) - _cam_y, this.width, this.height);
-	context.stroke();
-	context.restore();
+	//context.save();
+//
+//	//context.beginPath();
+//
+//	//context.rect(this.x - (this.width/2) - _cam_x  , this.y - (this.height/2) - _cam_y, this.width, this.height);
+//	//context.stroke();
+	//context.restore();
 
 };
 

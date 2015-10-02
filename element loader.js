@@ -10,6 +10,17 @@ fullKey.src = "Graphics and Animation/HUD/hud_keyYellow.png";
 var emptyKey = document.createElement("img");
 emptyKey.src = "Graphics and Animation/HUD/hud_keyYellow_disabled.png";
 
+var forestBackground = document.createElement("img");
+forestBackground.src = "Graphics and Animation/BackGround/forest.jpg";
+
+var greenBackground = document.createElement("img");
+greenBackground.src = "Graphics and Animation/BackGround/clouds.jpg";
+
+var blueBackground = document.createElement("img");
+blueBackground.src = "Graphics and Animation/BackGround/Fire.jpg";
+
+
+
 function drawHUD(){
 	context.save();
 
