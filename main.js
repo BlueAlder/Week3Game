@@ -78,9 +78,9 @@ var fpsTime = 0;
 
 function runSplash(deltaTime){
 	
-	context.fillStyle = "#ccc";
-	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	//context.fillStyle = "#ccc";
+	//context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	context.drawImage(forestBackground, 0, 0);
 
 	context.fillStyle = "#000"
 	context.font = "50px Arial";
@@ -90,7 +90,7 @@ function runSplash(deltaTime){
 	var textMeasure = context.measureText("Click me to play!");
 	
 
-	context.fillStyle = "green";
+	context.fillStyle = "red";
 	context.fillRect(SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.5, textMeasure.width, textMeasure.height);
 	context.stroke();
 
@@ -126,10 +126,23 @@ function runSplash(deltaTime){
 }
 
 function runWin(deltaTime){
-	context.fillStyle = "white";
+	context.strokeStyle = "black";
+	context.fillStyle = "#6CB3B3"
+	context.lineWidth = 1;
 	context.font = "50px Impact";
-	var textMeasure = context.measureText("CONGLATURATION");
-	context.fillText("CONGLATURATION", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	
+	var textMeasure = context.measureText("Congratulations!");
+	context.fillText("Congratulations!", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	context.strokeText("Congratulations!", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+
+
+	var textMeasure = context.measureText("Times Portaled: " + chuck.timesSwapped);
+	context.fillText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
+	context.strokeText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
+
+
+	
+
 	normal_background.stop();
 	alternate_background.stop();
 }
@@ -210,6 +223,7 @@ function updateAlpha(deltaTime)
 function runGame(deltaTime)
 {
 	
+<<<<<<< HEAD
 	if(CurrentColour == GREEN)
 	{
 		context.fillStyle = "#07f";	
@@ -218,6 +232,14 @@ function runGame(deltaTime)
 	else if (CurrentColour == BLUE)
 	{
 		context.fillStyle = "#f70";	
+=======
+	if(CurrentColour == GREEN){
+		context.drawImage(greenBackground, 0, 0);	
+		fireRain.isRunning = false;
+	}
+	else if (CurrentColour == BLUE){
+		context.drawImage(blueBackground, 0, 0);	
+>>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
 
 		updateAlpha(deltaTime);	
 
@@ -235,7 +257,7 @@ function runGame(deltaTime)
 		enemies[i].update(deltaTime);
 
 	}			
-	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	
 
 	chuck.Update(deltaTime, Cam_x, Cam_y);
 
@@ -372,6 +394,7 @@ function run()
 {
 	
 	//add a background rect
+
 	
 	
 	var deltaTime = getDeltaTime();
@@ -405,6 +428,7 @@ function run()
 	}		
 		
 	// draw the FPS
+<<<<<<< HEAD
 	context.fillStyle = "#f00";
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 60, 100);
@@ -418,6 +442,22 @@ function run()
 	context.fillStyle = "blue";
 	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
 
+=======
+	//context.fillStyle = "#f00";
+	//context.font="14px Arial";
+	//context.fillText("FPS: " + fps, 5, 60, 100);
+//
+//
+//	////draw x and y position of
+//	//context.fillStyle = "#ff00ff";
+//	//context.font="30px Arial";
+//	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+//
+//	////draw the mouse
+//
+//	//context.fillStyle = "blue";
+	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+>>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
 }
 
 
