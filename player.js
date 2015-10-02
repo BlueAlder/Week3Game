@@ -12,7 +12,7 @@ this.is_key_sfx_playing = false;
 
 
 var dustParticles = new Emitter();
-dustParticles.intialize(this.x , this.y - this.height/2, 1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
+dustParticles.intialize(this.x , this.y , 0, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
 									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
 
 
@@ -88,18 +88,13 @@ var Player = function(){
 	
 
 
-	this.key_sfx = new Howl(
-	{
-		urls: ["Picked Coin Echo 2.wav"],
-		buffer: true,
-		volume: 0.5,
-		onend: function()
-		{
-			self.is_key_sfx_playing = false;
-		}
-	});
+	
 
 };
+
+
+
+
 
 function updateGlobals()
 {
@@ -118,6 +113,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	this.sprite.update(deltaTime);
 	
 	updateGlobals();
+	
 	
 
 	var tx = pixel2Tile(this.x);
@@ -195,11 +191,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 				this.sprite.setAnimation(ANIM_IDLE);
 			}	
 
-			dustParticles.isRunning = false;
+			
 
 		}
 	}
 	
+
 	//set jumping animation
 	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP)))
 	{
@@ -327,6 +324,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 		ddy -= JUMP;
 		this.jumping = true;
 		this.sprite.setAnimation(ANIM_JUMP)
+		
+
 	}
 
 	//calculate the new postioin and velocity:
@@ -352,6 +351,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	//else{
 	//	this.rotation = 0;
 	//}
+
 
 
 	if (this.y > CurrentMap.height * TILE + 100)
@@ -421,29 +421,43 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	}
 
 
-
-	if ( (keyboard.isKeyDown(keyboard.KEY_RIGHT) || keyboard.isKeyDown(keyboard.KEY_LEFT) ) && !this.jumping && !this.falling )
+	//UPDATE THE PARTICLES
+	if ( this.velocityX != 0 && !this.jumping && !this.falling )
 	{
-		if(this.velocityX > 0 && !dustParticles.isRunning)
+		dustParticles.isRunning = true;
+		
+		if(this.velocityX > 0  )
 		{
 			dustParticles.dir_x = -1;
+			dustParticles.x = this.x - this.width/2;
+			dustParticles.y =  this.y + this.height/2 - 30;
+			dustParticles.update(deltaTime);
 			//dustParticles.intialize(this.x , this.y - this.height/2, -1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
-									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
-			dustParticles.isRunning = true;
-										
+									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src)										
 		}
 
-		else if (this.velocityX < 0 && !dustParticles.isRunning)
+		else if (this.velocityX < 0  )
 		{
 			dustParticles.dir_x = 1;
+			dustParticles.x = this.x + this.width/2 - 30;
+			dustParticles.y =  this.y + this.height/2 - 30
+			dustParticles.update(deltaTime);
 			//dustParticles.intialize(this.x , this.y - this.height/2, 1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
 									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
-			dustParticles.isRunning = true;
 		}
-
-		dustParticles.update(deltaTime, this.x, this.y);
-		dustParticles.draw(Cam_x, Cam_y);
+		
+		
 	}
+	else
+	{
+		dustParticles.x = this.x - this.width/2;
+		dustParticles.y =  this.y + this.height/2 - 30;
+		dustParticles.isRunning = false;
+		dustParticles.update(deltaTime);
+	}
+	
+
+		
 
 	
 	//player gains the key
@@ -525,6 +539,11 @@ Player.prototype.Draw = function(_cam_x, _cam_y)
 	context.globalAlpha = 1;
 	this.sprite.draw(context, this.x + (this.width/2) - _cam_x, this.y + (this.height/2) - _cam_y);
 	context.restore();
+
+	if (dustParticles.isRunning)
+	{
+		dustParticles.draw(Cam_x, Cam_y);
+	}
 //	context.save();
 //
 //		context.translate(this.x + _cam_x, this.y + _cam_y);

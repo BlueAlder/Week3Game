@@ -458,9 +458,9 @@ function run()
 //
 //
 //	////draw x and y position of
-//	//context.fillStyle = "#ff00ff";
-//	//context.font="30px Arial";
-//	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+	//context.fillStyle = "#ff00ff";
+	//context.font="30px Arial";
+	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
 //
 //	////draw the mouse
 //

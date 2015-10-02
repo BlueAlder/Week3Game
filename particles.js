@@ -64,11 +64,10 @@ Emitter.prototype.intialize = function(x, y, dir_x, dir_y, width, height, max_pa
 	}
 }
 
-Emitter.prototype.update = function(deltaTime, x, y)
+Emitter.prototype.update = function(deltaTime)
 {
 
-	this.x = x;
-	this.y = y;
+	
 		
 	this.particles_to_spawn += this.pps * deltaTime;
 
