@@ -7,7 +7,6 @@ var endFrameMillis = Date.now();
 var keyboard = new Keyboard();
 var chuck = new Player();
 var fireRain = new Emitter();				//define our objects
-var dustParticles = new Emitter();
 var mouse = new Mouse();
 
 
@@ -212,7 +211,7 @@ function debug_draw_map(input_cells, _cam_x, _cam_y)
 
 function updateAlpha(deltaTime){
 	chuck.timeInBlue += deltaTime
-	context.globalAlpha = 1/(chuck.timeInBlue+1);
+	context.globalAlpha = 1/(2*chuck.timeInBlue+1);
 }
 
 function runGame(deltaTime){
@@ -232,7 +231,7 @@ function runGame(deltaTime){
 			fireRain.isRunning = true;
 		}
 
-		fireRain.update(deltaTime);
+		fireRain.update(deltaTime, 0 , 0);
 		fireRain.draw(Cam_x, Cam_y);																//(x, y, dir_x, dir_y, width, height, max_particles, 															//	life_time, pps, alpha, is_rand_dir)
 		
 		

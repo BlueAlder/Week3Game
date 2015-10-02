@@ -6,8 +6,8 @@ var BLUE = 1;
 //var jsonString = JSON.stringify("levels/gree-map.json");
 //var jsonObj = JSON.parse(jsonString);
 
-var CurrentMap = level1_green;
-var CurrentLevel = 1;
+var CurrentMap = greenLevels[0];
+var CurrentLevel = 0;
 var CurrentColour = GREEN;
 
 var LAYER_COUNT = CurrentMap.layers.length;

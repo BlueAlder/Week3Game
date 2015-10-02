@@ -10,6 +10,9 @@ var self = this;
 this.is_key_sfx_playing = false;
 
 
+var dustParticles = new Emitter();
+dustParticles.intialize(this.x , this.y - this.height/2, 1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
+									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
 
 
 
@@ -159,6 +162,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		{
 			if(this.sprite.currentAnimation != ANIM_WALK_RIGHT)
 				this.sprite.setAnimation(ANIM_WALK_RIGHT);
+
+
 		}
 	}
 
@@ -167,7 +172,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		if(this.jumping == false && this.falling == false)
 		{
 			if(this.sprite.currentAnimation != ANIM_IDLE)
+			{
 				this.sprite.setAnimation(ANIM_IDLE);
+			}	
+
+			dustParticles.isRunning = false;
+
 		}
 	}
 	
@@ -185,24 +195,11 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
 		
 		if (CurrentColour == GREEN){
-			if (CurrentLevel == 1){			//check which map to swap to 
-				CurrentMap = level1_blue;
-				normal_background.stop();
-				alternate_background.play();
-			}
+			
+			CurrentMap = blueLevels[CurrentLevel]
+			normal_background.stop();
+			alternate_background.play();
 
-			if (CurrentLevel == 2){
-
-				CurrentMap = level2_blue;	
-				normal_background.stop();
-				alternate_background.play();
-			}
-
-			else if (CurrentLevel == 3){
-				CurrentMap = level3_blue;
-				alternate_background.play();
-				normal_background.stop();
-			}
 
 			
 			CurrentColour = BLUE;
@@ -210,23 +207,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		}
 
 		else if (CurrentColour == BLUE){
-			if (CurrentLevel == 1){
-				CurrentMap = level1_green;
-				alternate_background.stop();
-				normal_background.play();
-			}
-			else if (CurrentLevel == 2){
-				CurrentMap = level2_green;
-				alternate_background.stop();
-				normal_background.play();
-			}
+			
+			CurrentMap = greenLevels[CurrentLevel];
+			alternate_background.stop();
+			normal_background.play();
 
-			else if (CurrentLevel == 3){
-				CurrentMap = level3_green;
-				normal_background.play();
-				alternate_background.stop();
-			}
-
+			
 			this.timeInBlue = 0;
 			context.globalAlpha = 1;
 			CurrentColour = GREEN;
@@ -370,6 +356,29 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		}
 	}
 
+
+	if ( (keyboard.isKeyDown(keyboard.KEY_RIGHT) || keyboard.isKeyDown(keyboard.KEY_LEFT) ) && !this.jumping && !this.falling )
+	{
+		if(this.velocityX > 0 && !dustParticles.isRunning)
+		{
+			dustParticles.dir_x = -1;
+			//dustParticles.intialize(this.x , this.y - this.height/2, -1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
+									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
+			dustParticles.isRunning = true;
+										
+		}
+
+		else if (this.velocityX < 0 && !dustParticles.isRunning)
+		{
+			dustParticles.dir_x = 1;
+			//dustParticles.intialize(this.x , this.y - this.height/2, 1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
+									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
+			dustParticles.isRunning = true;
+		}
+
+		dustParticles.update(deltaTime, this.x, this.y);
+		dustParticles.draw(Cam_x, Cam_y);
+	}
 	
 	//player gains the key
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
@@ -402,18 +411,21 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 
 }
 
-Player.prototype.respawn = function(){
+Player.prototype.respawn = function()
+{
 
-	if (CurrentLevel== 1){
-		CurrentMap = level1_green;
-	}
-	else if (CurrentLevel == 2){
-		CurrentMap = level2_green;
-	}
+	CurrentMap = greenLevels[CurrentLevel]
 
-	else if (CurrentLevel == 3){
-		CurrentMap = level3_green;
-	}
+	//if (CurrentLevel== 1){
+	//	CurrentMap = level1_green;
+	//}
+	//else if (CurrentLevel == 2){
+	//	CurrentMap = level2_green;
+	//}
+//
+//	//else if (CurrentLevel == 3){
+//	//	CurrentMap = level3_green;
+	//}
 
 	CurrentColour = GREEN;
 	context.globalAlpha = 1;
