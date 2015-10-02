@@ -6,6 +6,13 @@ var normal_background = new Howl(
 	volume: 0.1
 } );
 
+var game_end = new Howl(
+{
+	urls: ["Music and Sounds/death theme.wav"],
+	buffer: true,
+	volume: 0.1
+} );
+
 
 var alternate_background = new Howl(
 {

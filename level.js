@@ -25,7 +25,7 @@ var LAYER_PORTAL =     4;
 //var ENEMY_MAXDX = METER * 5;
 //var ENEMY_ACCEL = ENEMY_MAXDX * 2;
 
-var MAX_LEVEL = 3;
+var MAX_LEVEL = 2;
 
 var TILESET_PADDING = CurrentMap.tilesets[0].margin;
 

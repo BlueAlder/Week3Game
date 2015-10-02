@@ -141,10 +141,24 @@ function runWin(deltaTime)
 	var textMeasure = context.measureText("Times Portaled: " + chuck.timesSwapped);
 	context.fillText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
 	context.strokeText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
+
+	context.font = "20px Impact"
+	var textMeasure = context.measureText("Press Enter to Play Again");
+	context.fillText("Press Enter to Play Again", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 90);
+	context.strokeText("Press Enter to Play Again", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 90);
 	
 
 	normal_background.stop();
 	alternate_background.stop();
+
+	if (keyboard.isKeyDown(keyboard.KEY_ENTER))
+	{
+		chuck.lives = LIVES;
+		CurrentMap = greenLevels[0];
+		CurrentLevel = 0;
+		chuck.respawn();
+		curGameState = GAMESTATE_GAME;
+	}
 }
 
 function checkCollision(_cam_x, _cam_y)
@@ -329,11 +343,14 @@ function endGame(deltaTime)
 	
 	context.font = "50px Impact";
 	context.fillStyle = "red";
-	var textMeasure = context.measureText("You died . . .");
-	context.fillText("You died . . .", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	context.strokeStyle = "black"
+
+	var textMeasure = context.measureText("Game Over");
+	context.fillText("Game Over", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
+	context.strokeText("Game Over", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2);
 	
 	context.font = "25px Arial";
-	context.fillStyle = "black";
+	context.fillStyle = "blue";
 	var textMeasure = context.measureText("Press enter to try again");
 	context.fillText("Press enter to try again", SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/1.7);
 	
@@ -347,7 +364,7 @@ function endGame(deltaTime)
 	{
 		
 		chuck.lives = LIVES;
-		chuck.score = 0;
+		
 		chuck.respawn();
 		curGameState = GAMESTATE_GAME;
 	}
@@ -437,18 +454,19 @@ function run()
 		
 	// draw the FPS
 
-	context.fillStyle = "#f00";
-	context.font="14px Arial";
-	context.fillText("FPS: " + fps, 5, 60, 100);
-
-	context.fillStyle = "#ff00ff";
-	context.font="30px Arial";
-	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
-
-	//draw the mouse
-
-	context.fillStyle = "blue";
-	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+	//context.fillStyle = "#f00";
+	//context.font="14px Arial";
+	//context.fillText("FPS: " + fps, 5, 60, 100);
+//	
+	//draw the x and y position
+//	//context.fillStyle = "#ff00ff";
+//	//context.font="30px Arial";
+//	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+//
+//	////draw the mouse
+//
+//	//context.fillStyle = "blue";
+	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
 
 
 	//context.fillStyle = "#f00";
@@ -457,9 +475,9 @@ function run()
 //
 //
 //	////draw x and y position of
-//	//context.fillStyle = "#ff00ff";
-//	//context.font="30px Arial";
-//	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+	//context.fillStyle = "#ff00ff";
+	//context.font="30px Arial";
+	//context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
 //
 //	////draw the mouse
 //
