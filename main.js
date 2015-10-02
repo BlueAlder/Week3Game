@@ -201,23 +201,28 @@ function debug_draw_map(input_cells, _cam_x, _cam_y)
 }
 
 
-function updateAlpha(deltaTime){
+function updateAlpha(deltaTime)
+{
 	chuck.timeInBlue += deltaTime
 	context.globalAlpha = 1/(chuck.timeInBlue+1);
 }
 
-function runGame(deltaTime){
+function runGame(deltaTime)
+{
 	
-	if(CurrentColour == GREEN){
+	if(CurrentColour == GREEN)
+	{
 		context.fillStyle = "#07f";	
 		fireRain.isRunning = false;
 	}
-	else if (CurrentColour == BLUE){
+	else if (CurrentColour == BLUE)
+	{
 		context.fillStyle = "#f70";	
 
 		updateAlpha(deltaTime);	
 
-		if(!fireRain.isRunning){
+		if(!fireRain.isRunning)
+		{
 			fireRain.intialize(0, 0, 0, 1, CurrentMap.width * TILE, 0, 3000, 10, 20, 0.5, true, "Graphics and Animation/particle.png");
 						  //(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir)
 			fireRain.isRunning = true;
@@ -245,19 +250,23 @@ function runGame(deltaTime){
 	var new_pos_x = chuck.x - SCREEN_WIDTH/2;
 	var new_pos_y = chuck.y - SCREEN_HEIGHT/2;
 
-	if (new_pos_x < left_stop){
+	if (new_pos_x < left_stop)
+	{
 		new_pos_x = left_stop;
 	}
 
-	else if (new_pos_x > right_stop){
+	else if (new_pos_x > right_stop)
+	{
 		new_pos_x = right_stop;
 	}
 
-	if (new_pos_y < top_stop){
+	if (new_pos_y < top_stop)
+	{
 		new_pos_y = top_stop;
 	}
 
-	else if (new_pos_y > bottom_stop){
+	else if (new_pos_y > bottom_stop)
+	{
 		new_pos_y = bottom_stop;
 	}
 
@@ -268,7 +277,8 @@ function runGame(deltaTime){
 
 	drawMap(Cam_x, Cam_y);
 
-	for (var i = 0; i < enemies.length; i++){
+	for (var i = 0; i < enemies.length; i++)
+	{
 		enemies[i].draw(Cam_x, Cam_y);
 		
 	}
@@ -284,7 +294,8 @@ function runGame(deltaTime){
 
 }
 
-function endGame(deltaTime){
+function endGame(deltaTime)
+{
 	
 
 	
@@ -304,7 +315,8 @@ function endGame(deltaTime){
 
 
 
-	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
+	if (keyboard.isKeyDown(keyboard.KEY_ENTER))
+	{
 		
 		chuck.lives = LIVES;
 		chuck.score = 0;
@@ -381,9 +393,6 @@ function run()
 
 	}
 	//updateCanvasSize();
-	
-	
-	
 		
 	// update the frame counter 
 	fpsTime += deltaTime;

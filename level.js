@@ -18,6 +18,7 @@ var LAYER_DOORS =      2;
 var LAYER_KEYS =       3;
 var LAYER_PORTAL =     4;
 var LAYER_OBJECT_ENEMIES = 5;
+var LAYER_OBJECT_TRIGGERS = 6;
 
 var METER = TILE;
 
@@ -71,7 +72,6 @@ function initialize(_level)
 			{
                 if(_level.layers[layerIdx].data[idx] !=  0)
 				{
-
                         //for each tile we find in the layer data, we nbeed to creat 4 collisions
                         //because our collision quares are 35x35 but the tile in the level are 70x70
                     if ( y == 0 )
