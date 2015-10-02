@@ -345,7 +345,7 @@ function endGame(deltaTime)
 
 
 }
-
+/*
 function initializeEnemies()
 {
 		idx = 0;
@@ -363,7 +363,7 @@ function initializeEnemies()
 				idx++;
 			}
 		}
-		
+*/		
 		//idx = 0;
 		//for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
 		//{
