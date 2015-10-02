@@ -10,7 +10,11 @@ var fireRain = new Emitter();				//define our objects
 var mouse = new Mouse();
 
 
+//var enemies = [];
+
+
 normal_background.play();
+
 initialize(CurrentMap);
 // This function will return the time in seconds since the function 
 // was last called
@@ -71,7 +75,8 @@ var fpsTime = 0;
 
 
 
-function runSplash(deltaTime){
+function runSplash(deltaTime)
+{
 	
 	//context.fillStyle = "#ccc";
 	//context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -112,7 +117,8 @@ function runSplash(deltaTime){
 
 
 
-	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
+	if (keyboard.isKeyDown(keyboard.KEY_ENTER))
+	{
 		curGameState = GAMESTATE_GAME;
 
 	}
@@ -120,7 +126,8 @@ function runSplash(deltaTime){
 
 }
 
-function runWin(deltaTime){
+function runWin(deltaTime)
+{
 	context.strokeStyle = "black";
 	context.fillStyle = "#6CB3B3"
 	context.lineWidth = 1;
@@ -134,15 +141,14 @@ function runWin(deltaTime){
 	var textMeasure = context.measureText("Times Portaled: " + chuck.timesSwapped);
 	context.fillText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
 	context.strokeText("Times Portaled: " + chuck.timesSwapped, SCREEN_WIDTH/2 - (textMeasure.width/2), SCREEN_HEIGHT/2 + 60);
-
-
 	
 
 	normal_background.stop();
 	alternate_background.stop();
 }
 
-function checkCollision(_cam_x, _cam_y){
+function checkCollision(_cam_x, _cam_y)
+{
 	var player_min_x = chuck.x + chuck.offset_x;
 	var player_min_y = chuck.y + chuck.offset_y;
 	
@@ -151,7 +157,8 @@ function checkCollision(_cam_x, _cam_y){
 
 
 
-	for (var enemyIndex = 0; enemyIndex < enemies.length; enemyIndex++){
+	for (var enemyIndex = 0; enemyIndex < enemies.length; enemyIndex++)
+	{
 		var enemy_min_x = enemies[enemyIndex].x + enemies[enemyIndex].offset_x;
 		var enemy_min_y = enemies[enemyIndex].y + enemies[enemyIndex].offset_y;
 	
@@ -159,19 +166,23 @@ function checkCollision(_cam_x, _cam_y){
 		var enemy_max_y = enemies[enemyIndex].y + enemies[enemyIndex].height + enemies[enemyIndex].offset_y;
 
 		if ((player_max_x < enemy_min_x || player_min_x > enemy_max_x) ||
-				(player_max_y < enemy_min_y || player_min_y > enemy_max_y)){
+				(player_max_y < enemy_min_y || player_min_y > enemy_max_y))
+		{
 
 			//not colliding
 			continue;
 
 		}
 
-		else{
+		else
+		{
 			chuck.lives --;
-			if(chuck.lives <= 0){
+			if(chuck.lives <= 0)
+			{
 				curGameState = GAMESTATE_ENDGAME;
 			}
-			else{
+			else
+			{
 				alternate_background.stop();
 				normal_background.play();
 				chuck.respawn();
@@ -179,8 +190,6 @@ function checkCollision(_cam_x, _cam_y){
 			}
 			return;
 		}
-		
-
 	}	
 }
 
@@ -209,23 +218,39 @@ function debug_draw_map(input_cells, _cam_x, _cam_y)
 }
 
 
-function updateAlpha(deltaTime){
+function updateAlpha(deltaTime)
+{
 	chuck.timeInBlue += deltaTime
 	context.globalAlpha = 1/(2*chuck.timeInBlue+1);
 }
 
-function runGame(deltaTime){
+function runGame(deltaTime)
+{
 	
-	if(CurrentColour == GREEN){
+
+	if(CurrentColour == GREEN)
+	{
+		context.fillStyle = "#07f";	
+		fireRain.isRunning = false;
+	}
+	else if (CurrentColour == BLUE)
+	{
+		context.fillStyle = "#f70";	
+	}
+	if(CurrentColour == GREEN)
+	{
 		context.drawImage(greenBackground, 0, 0);	
 		fireRain.isRunning = false;
 	}
-	else if (CurrentColour == BLUE){
+	else if (CurrentColour == BLUE)
+	{
 		context.drawImage(blueBackground, 0, 0);	
+
 
 		updateAlpha(deltaTime);	
 
-		if(!fireRain.isRunning){
+		if(!fireRain.isRunning)
+		{
 			fireRain.intialize(0, 0, 0, 1, CurrentMap.width * TILE, 0, 3000, 10, 20, 0.5, true, "Graphics and Animation/particle.png");
 						  //(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir)
 			fireRain.isRunning = true;
@@ -234,7 +259,8 @@ function runGame(deltaTime){
 		fireRain.update(deltaTime, 0 , 0);
 		fireRain.draw(Cam_x, Cam_y);																//(x, y, dir_x, dir_y, width, height, max_particles, 															//	life_time, pps, alpha, is_rand_dir)
 		
-		
+		//for (var i = 0; i < enemies.length; i++)
+		//enemies[i].update(deltaTime);
 
 	}			
 	
@@ -252,19 +278,23 @@ function runGame(deltaTime){
 	var new_pos_x = chuck.x - SCREEN_WIDTH/2;
 	var new_pos_y = chuck.y - SCREEN_HEIGHT/2;
 
-	if (new_pos_x < left_stop){
+	if (new_pos_x < left_stop)
+	{
 		new_pos_x = left_stop;
 	}
 
-	else if (new_pos_x > right_stop){
+	else if (new_pos_x > right_stop)
+	{
 		new_pos_x = right_stop;
 	}
 
-	if (new_pos_y < top_stop){
+	if (new_pos_y < top_stop)
+	{
 		new_pos_y = top_stop;
 	}
 
-	else if (new_pos_y > bottom_stop){
+	else if (new_pos_y > bottom_stop)
+	{
 		new_pos_y = bottom_stop;
 	}
 
@@ -275,6 +305,11 @@ function runGame(deltaTime){
 
 	drawMap(Cam_x, Cam_y);
 
+	//for (var i = 0; i < enemies.length; i++)
+	//{
+	//	enemies[i].draw(Cam_x, Cam_y);
+		
+	//}
 	
 	chuck.Draw(Cam_x, Cam_y);
 	
@@ -287,7 +322,8 @@ function runGame(deltaTime){
 
 }
 
-function endGame(deltaTime){
+function endGame(deltaTime)
+{
 	
 
 	
@@ -307,7 +343,8 @@ function endGame(deltaTime){
 
 
 
-	if (keyboard.isKeyDown(keyboard.KEY_ENTER)){
+	if (keyboard.isKeyDown(keyboard.KEY_ENTER))
+	{
 		
 		chuck.lives = LIVES;
 		chuck.score = 0;
@@ -318,18 +355,45 @@ function endGame(deltaTime){
 
 }
 
+//function initializeEnemies()
+//{
+//		idx = 0;
+//		for(var y = 0; y < level1_green.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+//		{
+//			for(var x = 0; x < level1_green.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+//			{
+//				if(level1_green.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+//				{
+//					var px = tile2Pixel(x);
+//					var py = tile2Pixel(y);
+//					var e = new Enemy(px, py);
+//					enemies.push(e);
+//				}
+//				idx++;
+//			}
+//		}
+//		
+//		//idx = 0;
+//		//for(var y = 0; y < level1_blue.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+//		//{
+//		//	for(var x = 0; x < level1_blue.layers[LAYER_OBJECT_ENEMIES].width; x++) 
+//		//	{
+//		//		if(level1_blue.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0) 
+//		//		{
+//		//			var px = tile2Pixel(x);
+//		//			var py = tile2Pixel(y);
+//		//			var e = new Enemy(px, py);
+//		//			enemies.push(e);
+//		//		}
+//		//		idx++;
+//		//	}
+//		//}
+//}
 
 
 
-
-
-
-
-//initialize(level1_green);
-
-
-
-function lerp(left_value, right_value, ratio){
+function lerp(left_value, right_value, ratio)
+{
 	return left_value + ratio * ( right_value - left_value);
 };
 
@@ -342,7 +406,8 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 
-	switch (curGameState){
+	switch (curGameState)
+	{
 
 		case GAMESTATE_SPLASH:
 			runSplash(deltaTime);
@@ -359,9 +424,6 @@ function run()
 
 	}
 	//updateCanvasSize();
-	
-	
-	
 		
 	// update the frame counter 
 	fpsTime += deltaTime;
@@ -374,6 +436,21 @@ function run()
 	}		
 		
 	// draw the FPS
+
+	context.fillStyle = "#f00";
+	context.font="14px Arial";
+	context.fillText("FPS: " + fps, 5, 60, 100);
+
+	context.fillStyle = "#ff00ff";
+	context.font="30px Arial";
+	context.fillText("position: " + Math.ceil(chuck.x) + ", "+ Math.ceil(chuck.y), 5, 80);
+
+	//draw the mouse
+
+	context.fillStyle = "blue";
+	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+
+
 	//context.fillStyle = "#f00";
 	//context.font="14px Arial";
 	//context.fillText("FPS: " + fps, 5, 60, 100);
@@ -388,6 +465,7 @@ function run()
 //
 //	//context.fillStyle = "blue";
 	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
+
 }
 
 
@@ -396,20 +474,27 @@ function run()
 
 // This code will set up the framework so that the 'run' function is called 60 times per second.
 // We have a some options to fall back on in case the browser doesn't support our preferred method.
-(function() {
+(function() 
+{
   var onEachFrame;
-  if (window.requestAnimationFrame) {
-    onEachFrame = function(cb) {
+  if (window.requestAnimationFrame) 
+  {
+    onEachFrame = function(cb) 
+{
       var _cb = function() { cb(); window.requestAnimationFrame(_cb); }
       _cb();
     };
-  } else if (window.mozRequestAnimationFrame) {
-    onEachFrame = function(cb) {
+  } else if (window.mozRequestAnimationFrame) 
+  {
+    onEachFrame = function(cb) 
+	{
       var _cb = function() { cb(); window.mozRequestAnimationFrame(_cb); }
       _cb();
     };
-  } else {
-    onEachFrame = function(cb) {
+  } else 
+  {
+    onEachFrame = function(cb) 
+	{
       setInterval(cb, 1000 / 60);
     }
   }

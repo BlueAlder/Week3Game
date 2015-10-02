@@ -10,9 +10,14 @@ var self = this;
 this.is_key_sfx_playing = false;
 
 
+
 var dustParticles = new Emitter();
 dustParticles.intialize(this.x , this.y - this.height/2, 1, 0, 0, 0, 100, 0.2, 20, 0.5, true, "Graphics and Animation/SmokeParticle.png");
 									//(x, y, dir_x, dir_y, width, height, max_particles, life_time, pps, alpha, is_rand_dir, image_src) 
+
+
+
+
 
 
 
@@ -27,7 +32,6 @@ var ANIM_JUMP = 1;
 var ANIM_WALK_LEFT = 2;
 var ANIM_WALK_RIGHT = 3;
 var ANIM_MAX = 4;
-
 
 
 var Player = function(){
@@ -83,10 +87,22 @@ var Player = function(){
 	
 	
 
-	
+
+	this.key_sfx = new Howl(
+	{
+		urls: ["Picked Coin Echo 2.wav"],
+		buffer: true,
+		volume: 0.5,
+		onend: function()
+		{
+			self.is_key_sfx_playing = false;
+		}
+	});
+
 };
 
-function updateGlobals(){
+function updateGlobals()
+{
 	GRAVITY = METER * 9.8 * document.getElementById("gravityInput").value;
 	SWAP_BUFFER = document.getElementById("swapInput").value;
 	JUMP = METER * document.getElementById("jumpInput").value;
@@ -96,7 +112,8 @@ function updateGlobals(){
 
 }
 
-Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
+Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) 
+{
 	
 	this.sprite.update(deltaTime);
 	
@@ -141,7 +158,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 
 
 	//changing anmiation and direction for left
-	if(keyboard.isKeyDown(keyboard.KEY_LEFT)){
+	if(keyboard.isKeyDown(keyboard.KEY_LEFT))
+	{
 		left = true;
 		this.direction = LEFT;
 		
@@ -154,7 +172,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 
 
 	//changing anmiation and direction for right
-	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT)){
+	else if (keyboard.isKeyDown(keyboard.KEY_RIGHT))
+	{
 		right = true;
 		this.direction = RIGHT;
 		
@@ -182,7 +201,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 	
 	//set jumping animation
-	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP))){
+	if ((keyboard.isKeyDown(keyboard.KEY_SPACE)) || (keyboard.isKeyDown(keyboard.KEY_UP)))
+	{
 		jump = true;
 		this.score += 1;
 
@@ -192,8 +212,10 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	
 
 	//check for a reality swap
-	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed){
+	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellPortal && this.swapAllowed)
+	{
 		
+
 		if (CurrentColour == GREEN){
 			
 			CurrentMap = blueLevels[CurrentLevel]
@@ -206,11 +228,13 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 			initialize(CurrentMap);
 		}
 
+
 		else if (CurrentColour == BLUE){
 			
 			CurrentMap = greenLevels[CurrentLevel];
 			alternate_background.stop();
 			normal_background.play();
+
 
 			
 			this.timeInBlue = 0;
@@ -227,10 +251,12 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		
 	}
 
-	if (!this.swapAllowed){
+	if (!this.swapAllowed)
+	{
 		this.swapBuffer -= deltaTime;
 
-		if (this.swapBuffer <= 0){
+		if (this.swapBuffer <= 0)
+		{
 			this.swapBuffer = SWAP_BUFFER;
 			//context.globalAlpha = 1;
 			this.swapAllowed = true;
@@ -240,8 +266,31 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 
 	//the player gains the key
-	
 
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
+	{
+		 
+		key_sfx.play();
+		is_key_sfx_playing = true;
+		
+		this.hasKey = true;
+	}
+
+
+	//player has key and is at the door
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey)
+	{
+		
+		if (CurrentLevel != MAX_LEVEL){
+			CurrentLevel += 1;
+			this.respawn();
+		}
+
+		else{
+			win_theme.play();
+			curGameState = GAMESTATE_WIN;
+		}		
+	}
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
 
@@ -252,17 +301,21 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	var ddx = 0;			 //ACCELERATION
 	var ddy = GRAVITY;
 
-	if (left){
+	if (left)
+	{
 		ddx -= ACCEL;
 	}
-	else if (wasleft){
+	else if (wasleft)
+	{
 		ddx += FRICTION;
 	}
 
-	if (right){
+	if (right)
+	{
 		ddx += ACCEL;
 	}
-	else if (wasright){
+	else if (wasright)
+	{
 		ddx -= FRICTION
 	}
 
@@ -283,7 +336,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	this.velocityY = bound(this.velocityY + (deltaTime * ddy), -MAXDY, MAXDY);
 
 
-	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0))){
+	if ( (wasleft && (this.velocityX > 0)) || (wasright && (this.velocityX < 0)))
+	{
 		//clamp at zero to prevbent frition from making us jiggle side to side
 		this.velocityX = 0;
 	} 
@@ -300,14 +354,16 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	//}
 
 
-	if (this.y > CurrentMap.height * TILE + 100){
+	if (this.y > CurrentMap.height * TILE + 100)
+	{
 			this.lives --;
 			if (this.lives <= 0){
 				curGameState = GAMESTATE_ENDGAME;
 
 			}
 
-			else{
+			else
+			{
 				this.respawn();
 				
 			}
@@ -315,8 +371,10 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 
 	////floor
-	if(this.velocityY > 0){
-		if ((cellDown & !cell) || (cellDiag && !cellRight && nx) || (!cellleft && cellDiagleft)){
+	if(this.velocityY > 0)
+	{
+		if ((cellDown & !cell) || (cellDiag && !cellRight && nx) || (!cellleft && cellDiagleft))
+		{
 			this.y = tile2Pixel(ty);									
 			this.velocityY = 0;
 			this.falling = false;
@@ -327,8 +385,10 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 	
 	//ceiling
-	else if (this.velocityY < 0) {
-		if ((cell && !cellDown) || (cellRight && !cellDiag && nx) || (cellleft && !cellDiagleft)){
+	else if (this.velocityY < 0) 
+	{
+		if ((cell && !cellDown) || (cellRight && !cellDiag && nx) || (cellleft && !cellDiagleft))
+		{
 			//calmp the y poition to avoid jumping into platform above
 
 			this.y = tile2Pixel(ty + 1);
@@ -341,20 +401,25 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 	}
 	
 
-	if (this.velocityX > 0){
-		if ((cellRight && !cell) || (cellDiag && !cellDown && ny)){
+	if (this.velocityX > 0)
+	{
+		if ((cellRight && !cell) || (cellDiag && !cellDown && ny))
+		{
 			//clamp the x position to avoid moving into the platform we just hit
 			this.x = tile2Pixel(tx);
 			this.velocityX = 0;
 		}
 	}
 
-	else if (this.velocityX < 0){
-		if((cell && !cellRight) || (cellDown && !cellDiag && ny)){
+	else if (this.velocityX < 0)
+	{
+		if((cell && !cellRight) || (cellDown && !cellDiag && ny))
+		{
 			this.x = tile2Pixel(tx + 1);
 			this.velocityX = 0;
 		}
 	}
+
 
 
 	if ( (keyboard.isKeyDown(keyboard.KEY_RIGHT) || keyboard.isKeyDown(keyboard.KEY_LEFT) ) && !this.jumping && !this.falling )
@@ -379,40 +444,34 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y) {
 		dustParticles.update(deltaTime, this.x, this.y);
 		dustParticles.draw(Cam_x, Cam_y);
 	}
+
 	
 	//player gains the key
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		 
 		key_sfx.play();
 		is_key_sfx_playing = true;
-		
+
 		this.hasKey = true;
 	}
 
-
 	//player has key and is at the door
-	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey){
-		
+	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey)
+	{		
 		if (CurrentLevel != MAX_LEVEL){
 			CurrentLevel += 1;
 			this.respawn();
 		}
-
 		else{
 			win_theme.play();
 			curGameState = GAMESTATE_WIN;
 		}
-
-
-		
 	}
-
-
-
 }
 
 Player.prototype.respawn = function()
 {
+
 
 	CurrentMap = greenLevels[CurrentLevel]
 
@@ -426,6 +485,7 @@ Player.prototype.respawn = function()
 //	//else if (CurrentLevel == 3){
 //	//	CurrentMap = level3_green;
 	//}
+
 
 	CurrentColour = GREEN;
 	context.globalAlpha = 1;
@@ -457,7 +517,8 @@ Player.prototype.respawn = function()
 
 
 
-Player.prototype.Draw = function(_cam_x, _cam_y){
+Player.prototype.Draw = function(_cam_x, _cam_y)
+{
 	
 	context.save();
 
@@ -482,5 +543,5 @@ Player.prototype.Draw = function(_cam_x, _cam_y){
 //	//context.stroke();
 	//context.restore();
 
-};
+}
 
