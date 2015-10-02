@@ -292,7 +292,7 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 	}
 
 	//the player gains the key
-<<<<<<< HEAD
+
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
 	{
 		 
@@ -315,15 +315,8 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 		else{
 			win_theme.play();
 			curGameState = GAMESTATE_WIN;
-		}
-
-
-		
+		}		
 	}
-=======
-	
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
-
 
 	//jump = keyboard.isKeyDown(keyboard.KEY_SPACE);
 
@@ -452,43 +445,28 @@ Player.prototype.Update = function(deltaTime, _cam_x, _cam_y)
 			this.velocityX = 0;
 		}
 	}
-
-<<<<<<< HEAD
-	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey)
-	{		//player recieves the key
-=======
 	
 	//player gains the key
 	if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellKey){
 		 
 		key_sfx.play();
 		is_key_sfx_playing = true;
-		
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
+
 		this.hasKey = true;
 	}
 
-
 	//player has key and is at the door
 	else if ((keyboard.isKeyDown(keyboard.KEY_CTRL)) && cellDoor && this.hasKey)
-	{
-		
+	{		
 		if (CurrentLevel != MAX_LEVEL){
 			CurrentLevel += 1;
 			this.respawn();
 		}
-
 		else{
 			win_theme.play();
 			curGameState = GAMESTATE_WIN;
 		}
-
-
-		
 	}
-
-
-
 }
 
 Player.prototype.respawn = function()
@@ -564,5 +542,5 @@ Player.prototype.Draw = function(_cam_x, _cam_y)
 //	//context.stroke();
 	//context.restore();
 
-};
+}
 

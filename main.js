@@ -223,7 +223,7 @@ function updateAlpha(deltaTime)
 function runGame(deltaTime)
 {
 	
-<<<<<<< HEAD
+
 	if(CurrentColour == GREEN)
 	{
 		context.fillStyle = "#07f";	
@@ -232,14 +232,16 @@ function runGame(deltaTime)
 	else if (CurrentColour == BLUE)
 	{
 		context.fillStyle = "#f70";	
-=======
-	if(CurrentColour == GREEN){
+
+	if(CurrentColour == GREEN)
+	{
 		context.drawImage(greenBackground, 0, 0);	
 		fireRain.isRunning = false;
 	}
-	else if (CurrentColour == BLUE){
+	else if (CurrentColour == BLUE)
+	{
 		context.drawImage(blueBackground, 0, 0);	
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
+
 
 		updateAlpha(deltaTime);	
 
@@ -386,7 +388,8 @@ function initializeEnemies()
 
 
 
-function lerp(left_value, right_value, ratio){
+function lerp(left_value, right_value, ratio)
+{
 	return left_value + ratio * ( right_value - left_value);
 };
 
@@ -399,7 +402,8 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 
-	switch (curGameState){
+	switch (curGameState)
+	{
 
 		case GAMESTATE_SPLASH:
 			runSplash(deltaTime);
@@ -428,7 +432,7 @@ function run()
 	}		
 		
 	// draw the FPS
-<<<<<<< HEAD
+
 	context.fillStyle = "#f00";
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 60, 100);
@@ -442,7 +446,7 @@ function run()
 	context.fillStyle = "blue";
 	context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
 
-=======
+
 	//context.fillStyle = "#f00";
 	//context.font="14px Arial";
 	//context.fillText("FPS: " + fps, 5, 60, 100);
@@ -457,7 +461,7 @@ function run()
 //
 //	//context.fillStyle = "blue";
 	//context.fillText("Mouse X: "+mouse.x+" Y: " +mouse.y, SCREEN_WIDTH - 300, 50);
->>>>>>> 93cc0b0a24de48da1441000c457e4e6adf10c229
+
 }
 
 
@@ -466,10 +470,13 @@ function run()
 
 // This code will set up the framework so that the 'run' function is called 60 times per second.
 // We have a some options to fall back on in case the browser doesn't support our preferred method.
-(function() {
+(function() 
+{
   var onEachFrame;
-  if (window.requestAnimationFrame) {
-    onEachFrame = function(cb) {
+  if (window.requestAnimationFrame) 
+  {
+    onEachFrame = function(cb) 
+{
       var _cb = function() { cb(); window.requestAnimationFrame(_cb); }
       _cb();
     };
