@@ -11,7 +11,7 @@ var dustParticles = new Emitter();
 var mouse = new Mouse();
 
 
-var enemies = [];
+//var enemies = [];
 
 
 normal_background.play();
@@ -260,8 +260,8 @@ function runGame(deltaTime)
 		fireRain.update(deltaTime);
 		fireRain.draw(Cam_x, Cam_y);																//(x, y, dir_x, dir_y, width, height, max_particles, 															//	life_time, pps, alpha, is_rand_dir)
 		
-		for (var i = 0; i < enemies.length; i++)
-		enemies[i].update(deltaTime);
+		//for (var i = 0; i < enemies.length; i++)
+		//enemies[i].update(deltaTime);
 
 	}			
 	
@@ -306,11 +306,11 @@ function runGame(deltaTime)
 
 	drawMap(Cam_x, Cam_y);
 
-	for (var i = 0; i < enemies.length; i++)
-	{
-		enemies[i].draw(Cam_x, Cam_y);
+	//for (var i = 0; i < enemies.length; i++)
+	//{
+	//	enemies[i].draw(Cam_x, Cam_y);
 		
-	}
+	//}
 	
 	chuck.Draw(Cam_x, Cam_y);
 	

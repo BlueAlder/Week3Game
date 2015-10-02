@@ -20,7 +20,7 @@ var LAYER_PORTAL =     4;
 //var LAYER_OBJECT_ENEMIES = 5;
 //var LAYER_OBJECT_TRIGGERS = 6;
 
-var METER = TILE;
+//var METER = TILE;
 
 ////var ENEMY_MAXDX = METER * 5;
 //var ENEMY_ACCEL = ENEMY_MAXDX * 2;
@@ -51,7 +51,7 @@ function updateLevel()
     MAP.th = CurrentMap.layers[LAYER_GROUND].height;
 }
 
-var enemies = new Enemy();
+//var enemies = new Enemy();
               //array that holds our simplified collision data
 var cells = [];  
 function initialize(_level)
